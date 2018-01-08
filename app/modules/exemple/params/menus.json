@@ -1,34 +1,22 @@
 [
     {
-        "name"      :  "Menu 1",
+        "name"      :  "Menu exemple",
         "icon"      :  "fa-dashboard",
         "smenus"    :  [
             {
-                "name" :   "Sous-menu Accueil",
+                "name" :   "Page Accueil",
                 "icon" :   "fa-home",
                 "link" :   "exemple-accueil"
             },
             {
-                "name" :  "Sous-menu 2",
-                "icon" :   "fa-dashboard",
+                "name" :  "Exemple de page",
+                "icon" :   "fa-bug",
                 "link" :   "exemple-page"
-            }
-        ]
-    },
-
-    {
-        "name"      :  "Menu 2",
-        "icon"      :  "fa-circle-o",
-        "smenus"    :  [
-            {
-                "name" :  "Sous-menu 3",
-                "icon" :  "fa-dashboard",
-                "link" :  "exemple-page1"
             },
             {
-                "name" :  "Sous-menu 4",
-                "icon" :  "fa-dashboard",
-                "link" :  "lien4"
+                "name" :  "Exemple d'inclusion",
+                "icon" :   "fa-download",
+                "link" :   "exemple-page1"
             }
         ]
     },
