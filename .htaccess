@@ -1,0 +1,25 @@
+RewriteEngine on
+
+# Légende des commentaires :
+# <...> : Obligatoire
+# (...) : Optionnel
+
+
+# Redirection des adresses sous la forme traitement-<module>-(page)-(id)
+# Si on a le module et la page et l'ID
+RewriteRule ^traitement-([a-zA-Z1-9]+)-([a-zA-Z1-9]+)-(.*)$ index.php?traitement=1&module=$1&page=$2&id=$3 [L,NS,QSA]
+# Si on la le module et la page
+RewriteRule ^traitement-([a-zA-Z1-9]+)-([a-zA-Z1-9]+)$ index.php?traitement=1&module=$1&page=$2 [L,NS,QSA]
+
+# Redirection des adresses sous la forme <module>-(page)-(id)
+# Si on a le module et la page et l'ID
+RewriteRule ^([a-zA-Z1-9]+)-([a-zA-Z1-9]+)-(.*)$ index.php?module=$1&page=$2&id=$3 [L,NS,QSA]
+# Si on la le module et la page
+RewriteRule ^([a-zA-Z1-9]+)-([a-zA-Z1-9]+)$ index.php?module=$1&page=$2 [L,NS,QSA]
+# Si il n'y a rien, on redirige sur index.php
+RewriteRule ^$  index.php [L]
+
+# Redirection des pages d'erreur
+#TODO - Changer par l'absolute path de la ressource
+ErrorDocument 404 /TwigTest/index.php?page=404
+

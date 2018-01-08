@@ -1,0 +1,35 @@
+<aside class="main-sidebar">
+  <!-- Barre de menu -->
+  <section class="sidebar">
+    <ul class="sidebar-menu" data-widget="tree">
+
+        <li>
+            <a href="{{ root }}/index.php"><i class="fa fa-home"></i> <span>Accueil</span></a>
+        </li>
+
+        {% for menu in menus if menu.smenus|length > 0 %}
+          <li class="treeview{% if menu.active %} active menu-open{% endif %}">
+            <a role="button">
+              <i class="fa {{ menu.icon }}"></i> <span>{{ menu.name }}</span>
+              <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+            </a>
+            <ul class="treeview-menu">
+                {% for smenu in menu.smenus if menu.smenus|length > 0 %}
+                  <li class="{% if smenu.active %}active{% endif %}">
+                    <a href="{{ smenu.link }}"><i class="fa {{ smenu.icon }}"></i>&nbsp;{{ smenu.name }}</a>
+                  </li>
+                {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+
+        {% for menu in menus if menu.smenus|length == 0 %}
+            <li>
+                <a href="{{ menu.link }}"><i class="fa {{ menu.icon }}"></i> <span>{{ menu.name }}</span></a>
+            </li>
+        {% endfor %}
+
+    </ul>
+  </section>
+  <!-- /.barre de menu -->
+</aside>

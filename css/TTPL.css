@@ -1,0 +1,12 @@
+ul.treeview-menu > li.active > a{
+    font-weight: bold;
+    color: #3C8DBC!important;
+}
+
+.sidebar-button {
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    color: white;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ pagetitle }}</title>
+    <!-- Mise en marche du responsive -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Ajout des feuilles de style -->
+    {% include 'styles.html' %}
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">{{ app_smallname }}</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">{{ app_name }}</span>
+        </a>
+
+        {% include 'menubar.html' %}
+
+    </header>
+
+    <!-- MENU DE GAUCHE -->
+    {% include 'menus.html' %}
+    <!-- /.MENU DE GAUCHE -->
+
+    <!-- CONTENU DE LA PAGE -->
+    <div class="content-wrapper">
+        <!-- Header du contenu -->
+        <section class="content-header">
+            <h1>
+                {{ page_title }} <small>{{ page_subtitle }}</small>
+            </h1>
+        </section>
+
+        <!-- Contenu de la page -->
+        <section class="content">
+            {{ content }}
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.CONTENU DE LA PAGE -->
+
+    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- Inclusion des scripts JS-->
+{% include 'scripts.html' %}
+
+</body>
+</html>

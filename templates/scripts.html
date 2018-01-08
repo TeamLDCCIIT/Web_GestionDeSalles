@@ -1,0 +1,13 @@
+<!-- jQuery 3 -->
+<script src="{{ root }}/js/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{ root }}/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ root }}/js/adminlte.min.js"></script>
+<!-- TTPL fonctions -->
+<script src="{{ root }}/js/ttpl.min.js"></script>
+
+<!-- Scripts de l'application -->
+{% for res in ressources_js %}
+    <script src="{{ res }}"></script>
+{% endfor %}

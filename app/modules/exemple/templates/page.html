@@ -1,0 +1,13 @@
+<h1>Ceci est une page de template de test</h1>
+<br>Voici les valeurs des variables :
+<br>
+<!-- Inclure un block -->
+{{ block_inclus }}
+<!-- -->
+<ul>
+    <li>nom : {{ nom|upper }}</li>
+    <li>prenom : {{ prenom }}</li>
+    <li>message : {{ message|e }}</li>
+    <li>liste des variables : {{ variables|json_encode }}</li>
+</ul>
+

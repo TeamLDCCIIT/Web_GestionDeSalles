@@ -1,0 +1,41 @@
+[
+    {
+        "name"      :  "Menu 1",
+        "icon"      :  "fa-dashboard",
+        "smenus"    :  [
+            {
+                "name" :   "Sous-menu Accueil",
+                "icon" :   "fa-home",
+                "link" :   "exemple-accueil"
+            },
+            {
+                "name" :  "Sous-menu 2",
+                "icon" :   "fa-dashboard",
+                "link" :   "exemple-page"
+            }
+        ]
+    },
+
+    {
+        "name"      :  "Menu 2",
+        "icon"      :  "fa-circle-o",
+        "smenus"    :  [
+            {
+                "name" :  "Sous-menu 3",
+                "icon" :  "fa-dashboard",
+                "link" :  "exemple-page1"
+            },
+            {
+                "name" :  "Sous-menu 4",
+                "icon" :  "fa-dashboard",
+                "link" :  "lien4"
+            }
+        ]
+    },
+
+    {
+        "name"  : "Tester le traitement",
+        "icon"  : "fa-book",
+        "link"  : "exemple-testTraitement"
+    }
+]

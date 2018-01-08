@@ -1,0 +1,20 @@
+<!-- Favicon -->
+<link rel="icon" href="{{ root }}/favicon.ico" />
+
+<!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" href="{{ root }}/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ root }}/css/font-awesome.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ root }}/css/AdminLTE.min.css">
+<!-- AdminLTE Skins -->
+<link rel="stylesheet" href="{{ root }}/css/skin.min.css">
+<!-- TTPL Skins -->
+<link rel="stylesheet" href="{{ root }}/css/TTPL.css">
+
+<!-- Styles de l'application -->
+{% for res in ressources_css %}
+    <link rel="stylesheet" href="{{ res }}">
+{% endfor %}
+<!-- Google Font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">

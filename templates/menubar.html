@@ -1,0 +1,32 @@
+<!-- Barre de navigation / menu -->
+<nav class="navbar navbar-static-top">
+    <!-- Bouton de menu -->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Menu</span>
+    </a>
+
+    {% if enablelogin %}
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <!-- Compte utilisateur -->
+            {% if username %}
+                <li class="dropdown user user-menu">
+                    <a href="#">
+                        <img src="http://fakeimg.pl/64/" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{ username }}</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            <!-- Bouton de connexion / déconnexion -->
+            <li>
+                {% if username %}
+                    <a href="{{ logoutpath }}"><i class="text-red fa fa-sign-out"></i></a>
+                {% else %}
+                    <a href="{{ loginpath }}"><i class="fa fa-sign-in"></i></a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    {% endif %}
+</nav>
