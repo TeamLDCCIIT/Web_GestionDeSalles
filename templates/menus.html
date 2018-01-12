@@ -24,7 +24,7 @@
         {% endfor %}
 
         {% for menu in menus if menu.smenus|length == 0 %}
-            <li>
+            <li class="{% if menu.active %}active{% endif %}">
                 <a href="{{ menu.link }}"><i class="fa {{ menu.icon }}"></i> <span>{{ menu.name }}</span></a>
             </li>
         {% endfor %}

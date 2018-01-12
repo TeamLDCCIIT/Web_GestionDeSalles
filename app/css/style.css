@@ -1,0 +1,7 @@
+.full-width{
+    width: 100%;
+}
+
+.full-page{
+    height: calc(100vh - 130px);
+}
