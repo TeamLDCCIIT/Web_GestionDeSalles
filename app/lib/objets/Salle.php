@@ -118,7 +118,7 @@ class Salle{
         $salleArray = array();
         while($row = $result->fetch_assoc()) {
             array_push($salleArray,
-                new Salle($row['id_salle'], $row['nom'], $row['code'], $row['type'], $row['etage'],
+                new Salle($row['id_salle'], $row['nom'], $row['code'], $row['type_salle'], $row['etage'],
                     Campus::getCampusByID($database, $row['id_campus'])));
         }
 
@@ -140,11 +140,34 @@ class Salle{
         if($result->num_rows === 1) {
             $row = $result->fetch_assoc();
 
-            return new Salle($row['id_salle'], $row['nom'], $row['code'], $row['type'], $row['etage'],
+            return new Salle($row['id_salle'], $row['nom'], $row['code'], $row['type_salle'], $row['etage'],
                 Campus::getCampusByID($database, $row['id_campus']));
         } else {
             throw new \ErrorException('La salle recherchée n\'existe pas : '.$id);
         }
+    }
+
+    /**
+     * Retourne les objets salle correspondants a la clause WHERE
+     * IMPORTANT : La clause where doit être protégée en amont
+     * @param $database \MySqlLib
+     * @param $where string clause WHERE
+     * @return array Salles
+     * @throws \ErrorException Si la salle n'existe pas
+     */
+    public static function getSallesWithCustomWhere($database, $where) {
+        $query  = "SELECT id_salle, nom, code, id_campus, type_salle, etage 
+                    FROM salles WHERE ".$where;
+        $result = $database->query($query);
+
+        $salles = array();
+        while($row = $result->fetch_assoc()) {
+            array_push($salles,
+                new Salle($row['id_salle'], $row['nom'], $row['code'], $row['type_salle'], $row['etage'],
+                    Campus::getCampusByID($database, $row['id_campus'])));
+        }
+
+        return $salles;
     }
 
 }
