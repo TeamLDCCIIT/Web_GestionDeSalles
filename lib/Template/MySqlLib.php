@@ -48,7 +48,7 @@ class MySqlLib
         //TODO - AJouter condition pour afficher debug
         if($connect->connect_error) {
             $messageErreur = 'Erreur de connexion a la base de donnees MySQL(' . $connect->connect_errno . ') ' . $connect->connect_error;
-            if(_debug === 'OUI') {
+            if(_debug) {
                 $messageErreur.=
                     ' <br /> Host : ' . $host .
                     ' <br /> login: ' . $login .
@@ -104,15 +104,12 @@ class MySqlLib
 
 
     /**
-     * Methode purify, retourne la variable sans Injection SQL
+     * Methode purify, protège la variable des Injections SQL
      * @param string $var Variable à proteger
-     * @return string Variable avec les caractères suivants encodés : NUL (ASCII 0), \n, \r, \, ', ", and Control-Z
      */
-    public function purify($var) {
+    public function purify(&$var) {
         if(is_string($var)) {
-            return $this->connection->real_escape_string($var);
-        } else {
-            return $var;
+            $var = $this->connection->real_escape_string($var);
         }
     }
 
