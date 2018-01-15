@@ -43,15 +43,29 @@ if(!$traitement) {
 }
 
 //Chargement des ressources de l'application (type => lien) pour JS & CSS
-$folderToAutoload = array('css' => 'css', 'js' => 'js');
+//Recherche du fichier autoload dans chacun des dossiers
+$filesToAutoload    = array(); //Ext -> File list
+$folderToAutoload   = array('css' => 'css', 'js' => 'js');
 //Ajout des ressources spécifiques du module
 if(is_dir(__DIR__.'/app/modules/' . basename($__module) . '/js')) {
     $folderToAutoload['modules/' .  basename($__module) . '/js'] = 'js';
 }
 foreach($folderToAutoload as $folder => $ext) {
-    //Récupération de la liste des fichiers dans le dossier
-    $filesToLoad = getArrayOfFilesInsideByExt(__DIR__.'/app/' . $folder);
-    $__template->setVar('ressources_'.$ext, isset($filesToLoad[$ext]) ? $filesToLoad[$ext] : null);
+    //Récupération du fichier autoload.json
+    $fileAutoload = __DIR__ . '/app/' . $folder . '/autoload.json';
+    if (file_exists($fileAutoload)) {
+        //Lecture du fichier
+        foreach (json_decode(file_get_contents($fileAutoload), true) as $file) {
+            if (!isset($filesToAutoload[$ext]) || !is_array($filesToAutoload[$ext])) {
+                $filesToAutoload[$ext] = array();
+            }
+
+            array_push($filesToAutoload[$ext], _root . '/app/' . $folder . '/' . $file);
+        }
+    }
+}
+foreach($filesToAutoload as $ext => $value) {
+    $__template->setVar('ressources_'.$ext, isset($filesToAutoload[$ext]) ? $filesToAutoload[$ext] : null);
 }
 
 //Chargement des librairies annexes

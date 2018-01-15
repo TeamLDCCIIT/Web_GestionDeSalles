@@ -8,9 +8,9 @@
                 <div class="col-sm-4">
                     <div class="input-group full-width">
                         <label for="campus_select">Campus : </label>
-                        <select id="campus_select" class="input-sm">
+                        <select id="campus_select" class="input-sm" data-action="rechercherSalle">
                             {% for ecole in campus %}
-                                <option value="{{ ecole.value }}">{{ ecole.key }}</option>
+                                <option value="{{ ecole.key }}">{{ ecole.value }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -20,9 +20,10 @@
                 <div class="col-sm-4">
                     <div class="input-group full-width">
                         <label for="etage_select">Etage : </label>
-                        <select id="etage_select" class="input-sm">
+                        <select id="etage_select" class="input-sm" data-action="rechercherSalle">
+                            <option value="-1">Tous</option>
                             {% for etage in etages %}
-                                <option value="{{ etage.value }}">{{ etage.key }}</option>
+                                <option value="{{ etage.key }}">{{ etage.value }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -32,9 +33,10 @@
                 <div class="col-sm-4">
                     <div class="input-group full-width">
                         <label for="type_select">Type : </label>
-                        <select id="type_select" class="input-sm">
+                        <select id="type_select" class="input-sm" data-action="rechercherSalle">
+                            <option value="-1">Tous</option>
                             {% for type in types %}
-                                <option value="{{ type.value }}">{{ type.key }}</option>
+                                <option value="{{ type.key }}">{{ type.value }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -42,7 +44,7 @@
             </div>
 
             <div class="col-sm-2 no-padding">
-                <button class="btn btn-block btn-primary btn-sm">
+                <button class="btn btn-block btn-primary btn-sm" data-action="rechercherSalle">
                     <i class="fa fa-search fa-fw" aria-hidden="true"></i>&nbsp;
                     Rechercher
                 </button>
@@ -53,25 +55,21 @@
 
         <div class="box-body table-responsive no-padding">
             <table class="table">
-                <tr class="info">
-                    <th class="col-sm-4">Nom</th>
-                    <th class="col-sm-2">Code</th>
-                    <th class="col-sm-2">Etage</th>
-                    <th class="col-sm-4">Type</th>
+                <tr class="info unselectable">
+                    <th class="col-sm-4" data-col="nom" role="button" data-action="rechercherSalle">Nom
+                    </th>
+                    <th class="col-sm-2" data-col="code" role="button" data-action="rechercherSalle">Code
+                    </th>
+                    <th class="col-sm-2" data-col="etage" role="button" data-action="rechercherSalle">Etage
+                    </th>
+                    <th class="col-sm-4" data-col="type_salle" role="button" data-action="rechercherSalle">Type
+                    </th>
                 </tr>
             </table>
         </div>
         <div class="box-body table-responsive no-padding" style="height: calc(100vh - 220px)">
             <table class="table table-hover">
-                <tbody>
-                {% for salle in salles %}
-                    <tr>
-                        <td class="col-sm-4">{{ salle.nom }}</td>
-                        <td class="col-sm-2">{{ salle.code }}</td>
-                        <td class="col-sm-2">{{ salle.etage }}</td>
-                        <td class="col-sm-4">{{ salle.type }}</td>
-                    </tr>
-                {% endfor %}
+                <tbody id="listeSalles">
                 </tbody>
             </table>
         </div>

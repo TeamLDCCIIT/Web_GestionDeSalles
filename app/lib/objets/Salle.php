@@ -24,8 +24,7 @@ class Salle{
     private $code;
 
     /**
-     * @var string
-     * TODO : Faire un enum
+     * @var integer TypeSalle
      */
     private $type;
 
@@ -53,7 +52,7 @@ class Salle{
         $this->id = $id;
         $this->nom = $nom;
         $this->code = $code;
-        $this->type = $type;
+        $this->type = \TypeSalle::findTypeSalle($type);
         $this->etage = $etage;
         $this->campus = $campus;
     }
@@ -108,7 +107,7 @@ class Salle{
 
     /**
      * Renvoies la liste de toutes les salles
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @return array liste des objets 'Salle'
      */
     public static function getSalleArray($database) {
@@ -127,7 +126,7 @@ class Salle{
 
     /**
      * Retourne l'objet salle correspondant à l'identifiant passé en paramètre
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @param $id int Identifiant de la salle
      * @return Salle
      * @throws \ErrorException Si la salle n'existe pas
@@ -137,7 +136,7 @@ class Salle{
                     FROM salles WHERE id_salle=".intval($id);
         $result = $database->query($query);
 
-        if($result->num_rows === 1) {
+        if($result->num_rows() === 1) {
             $row = $result->fetch_assoc();
 
             return new Salle($row['id_salle'], $row['nom'], $row['code'], $row['type_salle'], $row['etage'],
@@ -150,7 +149,7 @@ class Salle{
     /**
      * Retourne les objets salle correspondants a la clause WHERE
      * IMPORTANT : La clause where doit être protégée en amont
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @param $where string clause WHERE
      * @return array Salles
      * @throws \ErrorException Si la salle n'existe pas

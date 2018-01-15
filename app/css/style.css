@@ -5,3 +5,9 @@
 .full-page{
     height: calc(100vh - 130px);
 }
+
+.unselectable {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}

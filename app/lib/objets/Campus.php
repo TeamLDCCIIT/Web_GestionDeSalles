@@ -77,7 +77,7 @@ class Campus{
 
     /**
      * Renvoies la liste de tous les campus disponibles
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @return array liste des objets 'Campus'
      */
     public static function getCampusArray($database) {
@@ -94,7 +94,7 @@ class Campus{
 
     /**
      * Retourne l'objet campus correspondant à l'identifiant passé en paramètre
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @param $id int Identifiant du campus
      * @return Campus
      * @throws \ErrorException Si le campus n'existe pas
@@ -103,7 +103,7 @@ class Campus{
         $query  = "SELECT id_campus, nom, adresse, tel FROM campus WHERE id_campus=".intval($id);
         $result = $database->query($query);
 
-        if($result->num_rows === 1) {
+        if($result->num_rows() === 1) {
             $row = $result->fetch_assoc();
 
             return new Campus($row['id_campus'], $row['nom'], $row['adresse'], $row['tel']);
