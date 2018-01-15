@@ -4,24 +4,28 @@
  */
 //Script de récupération des salles en fonction des filtres
 
-//TODO : filtres
-$filtre_campus = 1;
-$filtre_etage = 1;
-$filtre_type = false;
+$filtre_campus  = isset($_POST['campus']) ? intval($_POST['campus']) : 1;
+$filtre_etage   = isset($_POST['etage']) ? intval($_POST['etage']) : -1;
+$filtre_type    = isset($_POST['type']) ? intval($_POST['type']) : -1;
+
+$tri_col        = isset($_POST['triCol']) ? strval($_POST['triCol']) : null;
+$tri_ord        = isset($_POST['triOrd']) ? strval($_POST['triOrd']) : null;
 
 //Initialisation de la db et des variables
-$db = new MySqlLib();
+$db = new PgSqlLib();
 $db->purify($filtre_campus);
 $db->purify($filtre_etage);
 $db->purify($filtre_type);
 
 //Clause WHERE
-$query = "id_campus= " . intval($filtre_campus);
-$query .= ($filtre_etage) ? (" AND etage= " . intval($filtre_etage)) : "";
-$query .= ($filtre_type) ? (" AND type_salle= '" . strval($filtre_type)) . "'" : "";
+$query = "id_campus=" . intval($filtre_campus);
+$query .= ($filtre_etage >= 0) ? (" AND etage= " . intval($filtre_etage)) : "";
+$query .= ($filtre_type >= 0) ? (" AND LOWER(type_salle)=LOWER('" . TypeSalle::getName($filtre_type) ."'") . ")" : "";
+
+$query .= (!isnull($tri_col) && !isnull($tri_ord)) ? " ORDER BY " . strval($tri_col) . " " . strval($tri_ord) : "";
 
 //Récupération de la liste de salles
-$salles = \lib\objets\Salle::getSallesWithCustomWhere(new MySqlLib(), $query);
+$salles = \lib\objets\Salle::getSallesWithCustomWhere($db, $query);
 
 //Préparation de la réponse
 $salleArray = array();
@@ -30,7 +34,7 @@ foreach($salles as $salle) {
         "nom"   =>  $salle->getNom(),
         "code"  =>  $salle->getCode(),
         "etage" =>  $salle->getEtage(),
-        "type"  =>  $salle->getType()
+        "type"  =>  TypeSalle::getName($salle->getType())
     ));
 }
 
