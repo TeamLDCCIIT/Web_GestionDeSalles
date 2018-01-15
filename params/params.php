@@ -4,7 +4,7 @@
  */
 //Paramètres SQL
 define('_sql_host', '127.0.0.1');
-define('_sql_login', 'admin');
+define('_sql_login', 'postgres');
 define('_sql_password', 'admin');
 define('_sql_db', 'gds');
 

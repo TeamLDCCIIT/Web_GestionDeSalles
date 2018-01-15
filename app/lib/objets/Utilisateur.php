@@ -108,7 +108,7 @@ class Utilisateur{
 
     /**
      * Renvoies la liste de tous les utilisateurs
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @return array liste des objets 'Utilisateur'
      */
     public static function getUtilisateurArray($database) {
@@ -127,7 +127,7 @@ class Utilisateur{
 
     /**
      * Retourne l'objet utilisateur correspondant à l'identifiant passé en paramètre
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @param $id int Identifiant de l'utilisateur
      * @return Utilisateur
      * @throws \ErrorException Si l'utilisateur n'existe pas
@@ -137,7 +137,7 @@ class Utilisateur{
                     FROM utilisateur WHERE id_utilisateur=".intval($id);
         $result = $database->query($query);
 
-        if($result->num_rows === 1) {
+        if($result->num_rows() === 1) {
             $row = $result->fetch_assoc();
 
             return new Utilisateur($row['id_utilisateur'], $row['nom'], $row['prenom'], $row['login'], $row['groupe'],

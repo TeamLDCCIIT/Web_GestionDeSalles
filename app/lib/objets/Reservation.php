@@ -93,7 +93,7 @@ class Reservation{
 
     /**
      * Retourne l'objet Reservation correspondant à l'identifiant passé en paramètre
-     * @param $database \MySqlLib
+     * @param $database \PgSqlLib
      * @param $id int Identifiant de la reservation
      * @return Reservation
      * @throws \ErrorException Si la reservation n'existe pas
@@ -103,7 +103,7 @@ class Reservation{
                     FROM reservation WHERE id_res=".intval($id);
         $result = $database->query($query);
 
-        if($result->num_rows === 1) {
+        if($result->num_rows() === 1) {
             $row = $result->fetch_assoc();
 
             return new Reservation($row['id_res'], $row['debut'], $row['fin'],
