@@ -2,11 +2,11 @@
 /**
  * Created by Tristan LE GACQUE on 24/12/2017
  */
-//Paramètres MySQL
-define('_mysql_host', '127.0.0.1');
-define('_mysql_login', 'admin');
-define('_mysql_password', 'admin');
-define('_mysql_db', 'gds');
+//Paramètres SQL
+define('_sql_host', '127.0.0.1');
+define('_sql_login', 'admin');
+define('_sql_password', 'admin');
+define('_sql_db', 'gds');
 
 //Paramètres globaux
 define("_debug", true);

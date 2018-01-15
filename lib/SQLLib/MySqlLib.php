@@ -28,7 +28,7 @@ class MySqlLib
      * @param string $login Identifiant pour se connecter
      * @param string $password Mot de passe associé à l'identifiant
      */
-    public function __construct($db = _mysql_db, $host = _mysql_host, $login =_mysql_login, $password = _mysql_password)  {
+    public function __construct($db = _sql_db, $host = _sql_host, $login =_sql_login, $password = _sql_password)  {
         $this->connect($host, $login, $password, $db);
     }
 
@@ -45,7 +45,6 @@ class MySqlLib
         //Créer la connection
         $connect = new mysqli($host, $login, $password, $database);
 
-        //TODO - AJouter condition pour afficher debug
         if($connect->connect_error) {
             $messageErreur = 'Erreur de connexion a la base de donnees MySQL(' . $connect->connect_errno . ') ' . $connect->connect_error;
             if(_debug) {
@@ -138,5 +137,3 @@ class MySqlLib
         return $this->connection->affected_rows;
     }
 }
-
-?>
