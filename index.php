@@ -14,7 +14,9 @@ session_start();
 //Définition des librairies
 require_once __DIR__ . '/vendor/autoload.php'; //Autoload des librairies composer
 require_once __DIR__ . '/lib/Template/Template.php'; //Load de l'objet Template
-require_once __DIR__ . '/lib/Template/MySqlLib.php'; //Load de l'objet Template
+require_once __DIR__ . '/lib/SQLLib/PgSqlLib.php'; //Load de l'objet SQL
+require_once __DIR__ . '/lib/SQLLib/PgResult.php'; //Load de l'objet SQL
+require_once __DIR__ . '/lib/SQLLib/PgConnect.php'; //Load de l'objet SQL
 require_once __DIR__ . '/lib/functions.php'; //Load des fonctions du framework
 require_once __DIR__ . '/params/params.php'; //Load des paramètres
 
