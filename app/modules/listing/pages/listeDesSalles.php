@@ -6,7 +6,9 @@ $template = new \Tpl\Template(__DIR__ . '/../templates/listeDesSalles.html');
 $__template->setVar('pagetitle', 'Liste des salles');
 $__template->setVar('page_title', 'Liste des salles');
 
+$salles = \lib\objets\Salle::getSalleArray(new MySqlLib());
 
+    /*
 $salles = array(
     array(
         'nom'   =>  'Broglie',
@@ -81,6 +83,7 @@ $salles = array(
         'type'  =>  'Amphi'
     )
 );
+*/
 
 //Ajout des salles
 $template->setVar('salles', $salles);

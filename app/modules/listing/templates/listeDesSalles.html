@@ -54,10 +54,10 @@
         <div class="box-body table-responsive no-padding">
             <table class="table">
                 <tr class="info">
-                    <th>Nom</th>
-                    <th>Code</th>
-                    <th>Etage</th>
-                    <th>Type</th>
+                    <th class="col-sm-4">Nom</th>
+                    <th class="col-sm-2">Code</th>
+                    <th class="col-sm-2">Etage</th>
+                    <th class="col-sm-4">Type</th>
                 </tr>
             </table>
         </div>
@@ -66,10 +66,10 @@
                 <tbody>
                 {% for salle in salles %}
                     <tr>
-                        <td>{{ salle.nom }}</td>
-                        <td>{{ salle.code }}</td>
-                        <td>{{ salle.etage }}</td>
-                        <td>{{ salle.type }}</td>
+                        <td class="col-sm-4">{{ salle.nom }}</td>
+                        <td class="col-sm-2">{{ salle.code }}</td>
+                        <td class="col-sm-2">{{ salle.etage }}</td>
+                        <td class="col-sm-4">{{ salle.type }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

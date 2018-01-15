@@ -28,7 +28,7 @@ class MySqlLib
      * @param string $login Identifiant pour se connecter
      * @param string $password Mot de passe associé à l'identifiant
      */
-    public function __construct($db = _mysql_db, $host = _mysql_host, $login =_mysql_login, $password = _mysql_password)  {
+    public function __construct($db = _sql_db, $host = _sql_host, $login =_sql_login, $password = _sql_password)  {
         $this->connect($host, $login, $password, $db);
     }
 
@@ -45,10 +45,9 @@ class MySqlLib
         //Créer la connection
         $connect = new mysqli($host, $login, $password, $database);
 
-        //TODO - AJouter condition pour afficher debug
         if($connect->connect_error) {
             $messageErreur = 'Erreur de connexion a la base de donnees MySQL(' . $connect->connect_errno . ') ' . $connect->connect_error;
-            if(_debug === 'OUI') {
+            if(_debug) {
                 $messageErreur.=
                     ' <br /> Host : ' . $host .
                     ' <br /> login: ' . $login .
@@ -104,15 +103,12 @@ class MySqlLib
 
 
     /**
-     * Methode purify, retourne la variable sans Injection SQL
+     * Methode purify, protège la variable des Injections SQL
      * @param string $var Variable à proteger
-     * @return string Variable avec les caractères suivants encodés : NUL (ASCII 0), \n, \r, \, ', ", and Control-Z
      */
-    public function purify($var) {
+    public function purify(&$var) {
         if(is_string($var)) {
-            return $this->connection->real_escape_string($var);
-        } else {
-            return $var;
+            $var = $this->connection->real_escape_string($var);
         }
     }
 
@@ -141,5 +137,3 @@ class MySqlLib
         return $this->connection->affected_rows;
     }
 }
-
-?>

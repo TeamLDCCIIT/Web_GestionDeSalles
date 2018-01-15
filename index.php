@@ -57,7 +57,7 @@ $filesToLoad = getArrayOfFilesInsideByExt(__DIR__.'/app/lib');
 $filesToLoad = isset($filesToLoad['php']) ? $filesToLoad['php'] : null;
 if(!is_null($filesToLoad)) {
     foreach($filesToLoad as $file) {
-        require __DIR__ . '/app/lib/' . basename($file);
+        require __DIR__ . '/app/lib/' . substr($file, (strpos($file, '/lib') + 5));
     }
 }
 
