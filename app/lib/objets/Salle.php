@@ -24,8 +24,7 @@ class Salle{
     private $code;
 
     /**
-     * @var string
-     * TODO : Faire un enum
+     * @var integer TypeSalle
      */
     private $type;
 
@@ -53,7 +52,7 @@ class Salle{
         $this->id = $id;
         $this->nom = $nom;
         $this->code = $code;
-        $this->type = $type;
+        $this->type = \TypeSalle::findTypeSalle($type);
         $this->etage = $etage;
         $this->campus = $campus;
     }

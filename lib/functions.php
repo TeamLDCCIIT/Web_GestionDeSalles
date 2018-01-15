@@ -122,7 +122,7 @@ function redirect($url){
  * @return bool True si null, false sinon
  */
 function isnull($obj) {
-    return (!isset($obj) || $obj === null || $obj === "");
+    return (!isset($obj) || $obj === null || $obj === "" ||$obj === "undefined");
 }
 
 /**
