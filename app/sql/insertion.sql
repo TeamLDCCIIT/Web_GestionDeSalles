@@ -195,15 +195,15 @@ VALUES('Salle de formations', '0', 2, '', 0) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Foyer', '1', 2, '', 0) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('S1', '2', 2, 'Salle de cours', 1) ;
+VALUES('S1', '2', 2, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('S2', '3', 2, 'Salle de cours', 1) ;
+VALUES('S2', '3', 2, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('S3', '4', 2, 'Salle de cours', 1) ;
+VALUES('S3', '4', 2, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('S5', '5', 2, 'Salle de cours', 1) ;
+VALUES('S5', '5', 2, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('S6', '6', 2, 'Salle de cours', 1) ;
+VALUES('S6', '6', 2, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('labo 1', '7', 2, 'Lab. Informatique', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
@@ -218,9 +218,9 @@ VALUES('SDR 2', '11', 2, 'Salle de reunion', 1) ;
 
 /*insertion des salles DIJON*/
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('P1', '1', 3, 'Salle de cours', 1) ;
+VALUES('P1', '1', 3, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('P2', '2', 3, 'Salle de cours', 1) ;
+VALUES('P2', '2', 3, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Salle de reunion', '3', 3, 'Salle de reunion', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
