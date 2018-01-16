@@ -21,38 +21,39 @@
 					<p style="margin-top: 17px">Le</p>
 				</div>
 			
-				<div style="margin-top: 10px"class="col-sm-4 input-group date">
+				<div style="margin-top: 10px"class="col-sm-6 input-group date">
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<input type="text" class="form-control" id="datepicker">
+					<input type="text" data-provide="daterange" class="form-control" id="datepicker">
 				</div>
 			</div>
 			
 			<div class="col-sm-12 no-padding">
-				<label style="margin-top: 15px" class="col-sm-2 control-label"><U>Horaires :</U></label>
-			
-				<div class="col-sm-1">
-					<p style="margin-top: 17px">De</p>
+				<div class="col-sm-2">
 				</div>
-
-                <div style="margin-top: 10px" class="col-sm-3 input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-clock-o"></i>
-                  </div>
-                  <input type="text" class="form-control pull-right" id="reservationtime">
-                </div>
 				
-				<div class="col-sm-1">
-					<p style="margin-top: 17px">à</p>
+				<label style="margin-top: 15px; color: green" class="col-sm-4 control-label"><i class="fa fa-check-circle"></i> 3 salles disponibles</label>
+				
+				<div class="col-sm-4">
+                <button type="button" style="margin-top:10px" class="btn btn-block btn-primary btn-sm"><i class="fa fa-search"></i> Rechercher</button>
 				</div>
-
-                <div style="margin-top: 10px" class="col-sm-3 input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-clock-o"></i>
-                  </div>
-                  <input type="text" class="form-control pull-right" id="reservationtime">
-                </div>
+			</div>
+			
+			<div class="col-sm-12 no-padding">
+                  <label style="margin-top: 15px" class="col-sm-2 control-label"><U>Motif :</U></label>
+				  
+                  <textarea class="col-sm-10 form-control" rows="3" placeholder="Enter ..."></textarea>
+			</div>
+			
+			<div class="col-sm-12 no-padding">
+                <div class="col-sm-6">
+                <button type="button" style="margin-top:10px" class="btn btn-block btn-danger btn-sm"><i class="fa fa-times"></i> Annuler</button>
+				</div>
+				
+				<div class="col-sm-6">
+                <button type="button" style="margin-top:10px" class="btn btn-block btn-success btn-sm"><i class="fa fa-check"></i> Valider</button>
+				</div>
 			</div>
 			
 		</div>
@@ -64,27 +65,28 @@
 		<div class="box-header" style="color: #444;display: block;padding: 10px;position: relative;">
 			
 			<div class="col-sm-12">
-				<p style="font-size: 20px; text-align: center">Connexion à l'interface</p>
-			</div>
-			
-			<div class="col-sm-12" style="background-color: LightCoral">
-				<p style="text-align: center">Erreur de connexion, vérifier que votre identifiant et votre mot-de-passe sont corrects</p>
-			</div>
-		
-			<label for="inputUsername" style="margin-top: 15px" class="col-sm-4 control-label">username</label>
-			
-			<div class="col-sm-8">
-                <input type="username" style="margin-top: 10px" class="form-control" id="InputUsername" placeholder="Username">
-			</div>
-			
-			<label for="InputPassword" style="margin-top: 15px" class="col-sm-4 control-label">password</label>
-			
-			<div class="col-sm-8">
-                <input type="password" style="margin-top: 10px" class="form-control" id="InputPassword" placeholder="*********">
+				<p style="font-size: 20px">3 salles disponibles</p>
 			</div>
 			
 			<div class="col-sm-12">
-                <button type="button" style="margin-top:10px" class="btn btn-block btn-primary btn-sm">connexion</button>
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                      Salle 2
+                </label>
+            </div>
+			
+			<div class="col-sm-12">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
+                      Salle 3
+                </label>
+            </div>
+			
+			<div class="col-sm-12">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" checked="">
+                      Salle 6
+                </label>
             </div>
 			
 		</div>
