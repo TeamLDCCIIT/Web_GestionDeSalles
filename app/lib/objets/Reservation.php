@@ -36,8 +36,8 @@ class Reservation{
     /**
      * Reservation constructor.
      * @param int $id
-     * @param string $dateDebut
-     * @param string $dateFin
+     * @param string $dateDebut format YY-MM-DD HH:II:SS
+     * @param string $dateFin   format YY-MM-DD HH:II:SS
      * @param Utilisateur $utilisateur
      * @param Salle $salle
      */
@@ -112,5 +112,52 @@ class Reservation{
         } else {
             throw new \ErrorException('La réservation recherchée n\'existe pas : '.$id);
         }
+    }
+
+    /**
+     * Récupère la liste des Reservation d'un utilisateur
+     * @param $database \PgSqlLib
+     * @param $user_id int
+     * @return array
+     * @throws \ErrorException
+     */
+    public static function getUserReservations($database, $user_id) {
+        $query  = "SELECT id_res, id_salle, id_utilisateur, debut, fin
+                    FROM reservation WHERE id_utilisateur=".intval($user_id);
+        $result = $database->query($query);
+
+        if($result) {
+            $reservations = array();
+            while($row = $result->fetch_assoc()) {
+                array_push($reservations, new Reservation($row['id_res'], $row['debut'], $row['fin'],
+                    Utilisateur::getUtilisateurByID($database, $row['id_utilisateur']),
+                    Salle::getSalleByID($database, $row['id_salle'])));
+            }
+
+            return $reservations;
+        } else {
+            throw new \ErrorException('Erreur de requête');
+        }
+    }
+
+    /**
+     * Enregistre une reservation, et renvoies vrai si l'enregistrement est reussi
+     * @param $database \PgSqlLib
+     * @param Reservation $reservation
+     * @return boolean
+     * @throws \ErrorException
+     */
+    public static function saveReservation($database, Reservation $reservation) {
+        $id_salle   =   $reservation->getSalle()->getId();
+        $id_user    =   $reservation->getUtilisateur()->getId();
+        $debut      =   $reservation->getDateDebut();
+        $fin        =   $reservation->getDateFin();
+
+        $query  = "INSERT INTO reservation(id_salle, id_utilisateur, debut, fin) 
+                    VALUES($id_salle, $id_user, $debut, $fin)";
+
+        $result = $database->execute($query);
+
+        return $result;
     }
 }

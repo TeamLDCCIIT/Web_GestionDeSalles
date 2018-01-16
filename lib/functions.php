@@ -154,11 +154,13 @@ function checkRights($moduleFolder) {
  * @param $fields : un array avec les valeurs à transmettre en POST (pré-urlencode)
  * @return mixed : la réponse serveur en tant que string
  */
-function postCurl ($url, $fields = array(), $verifySSL = true) {
+function postCurl ($url, $fields = array(), $verifySSL = true){
 
     // Create POST friendly string
     $fields_string = '';
-    foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+    foreach ($fields as $key => $value) {
+        $fields_string .= $key . '=' . $value . '&';
+    }
     $fields_string = rtrim($fields_string, '&');
 
     // Open connection
@@ -182,4 +184,38 @@ function postCurl ($url, $fields = array(), $verifySSL = true) {
 
     // Return value
     return $result;
+}
+
+
+/**
+ * Renvoies la date au format SQL
+ * @param $frenchFormat
+ * @return string
+ */
+function getDateTimeSqlFormat($frenchFormat) {
+    if(strpos($frenchFormat, '/') !== FALSE) {
+        //Date au format dd/mm/yy hh:ii:ss
+        $date   = explode(" ", $frenchFormat)[0];
+        $hour   = explode(" ", $frenchFormat)[1];
+
+        $dsplit = explode("/", $date);
+
+        $sqlFormat  = $dsplit[2] . '-' . $dsplit[1] . '-' .$dsplit[0] . ' ' . $hour;
+        return $sqlFormat;
+    } else {
+        return $frenchFormat;
+    }
+}
+
+/**
+ * Récupère le nom utilisateur si il est connecté
+ * @return \lib\objets\Utilisateur
+ */
+function getUtilisateur() {
+    if(isset($_SESSION['user'])) {
+        $id = $_SESSION['user']['id'];
+        return \lib\objets\Utilisateur::getUtilisateurByID(new PgSqlLib(), $id);
+    } else {
+        return null;
+    }
 }
