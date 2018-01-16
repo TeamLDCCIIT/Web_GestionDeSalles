@@ -3,31 +3,36 @@
  * Created by Jérémie on 15/01/2018
  */
 
-$login = isset($_GET['InputUsername']) ? strval($_GET['InputUsername']) : null;
-$mdp = isset($_GET['InputPassword']) ? strval($_GET['InputPassword']) : null;
-echo $login;
-
+//Récupérer le login/mdp
+$login = isset($_POST['InputUsername']) ? strval($_POST['InputUsername']) : null;
+$mdp = isset($_POST['InputPassword']) ? strval($_POST['InputPassword']) : null;
+//Encoder le mdp
+$mdp = hash('sha256',$mdp);
+//Connexion à la DB puis requête
 $db = new PgSqlLib();
-$req = "SELECT groupe FROM Utilisateur WHERE Utilisateur.login = '".$login."' AND Utilisateur.password = '".$mdp."'";
+$req = "SELECT id_utilisateur,groupe FROM Utilisateur WHERE Utilisateur.login = '".$login."' AND Utilisateur.password = '".$mdp."'";
 $result = $db->query($req);
-
-if(!$result){
+//Authentification et affectation de la variable $_SESSION
+if($result->num_rows() !== 1){
     $type_res = 'error';
     $msg = "login error";
 } else {
     $resultat = $result->fetch_assoc();
+    $id_utilisateur = $resultat['id_utilisateur'];
     $groupe = $resultat['groupe'];
+    $_SESSION['user']['id_utilisateur'] = $id_utilisateur;
     $_SESSION['user']['username'] = $login;
     $_SESSION['user']['group'] = array($groupe);
     $type_res = 'success';
     $msg = "PAPA DANS MAMAN ";
-    $db->close();
+
 };
-
-
+//Fermeture de la connexion
+$db->close();
+//Mise en forme de la sortie
 $response = array(
-        "type"  =>  $type_res, //(error)
-        "message"   =>  $msg
+        "type" => $type_res,
+        "message" => $msg
 );
-
+//Envoi du message de sortie
 die(json_encode($response));

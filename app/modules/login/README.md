@@ -10,6 +10,7 @@ reussie. Les lignes suivantes doivent être incluses dans le fichier
 de gestion des droits :
 
 ```php
+$_SESSION['user']['id_utilisateur'] = <id_utilisateur>
 $_SESSION['user']['username']   = <nom_de_l'utilisateur>
 $_SESSION['user']['group']      = array('groupe1', 'groupe2', ...)
 ```
