@@ -1,3 +1,4 @@
 [
-    "functions.js"
+    "functions.js",
+    "toastr.min.js"
 ]
