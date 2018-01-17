@@ -10,13 +10,22 @@ $debut = isset($_POST['InputDebut']) ? strval($_POST['InputDebut']) : null;;
 $fin = isset($_POST['InputFin']) ? strval($_POST['InputFin']) : null;;
 //Connexion à la DB
 $db = new PgSqlLib();
-//Requête
-$req = 'SELECT id_res FROM reservation,salles,utilisateur,campus 
-WHERE id_salle = '".$id_salle."' AND id_campus = '".$id_campus."' AND (
-(debut < '".$debut."' AND '".$debut."' < fin < '".$fin."') OR
-('".$debut."' < debut < '".$fin."' AND '".$debut."' < fin < '".$fin."') OR
-('".$debut."' < debut < '".$fin."' AND '".$fin."' < fin) OR
-(debut ))';
+//Requête, la salle est libre si aucun résultat n'est retourné
+$req = "SELECT id_res FROM reservation,salles,utilisateur,campus 
+WHERE salles.id_salle = '".$id_salle."' AND campus.id_campus = '".$id_campus."' AND 
+(('".$debut."' < reservation.debut < '".$fin."' OR '".$debut."' < reservation.fin < '".$fin."') OR 
+(reservation.debut < '".$debut."' AND '".$fin."' < reservation.fin))";
+//Envoi de la requête
+$result = $db->query($req);
+//Tester si la salle est libre
+if($result->num_rows() == 0){
+    $type_res = 'success';
+    $msg = 'La salle est libre';
+} else {
+    $resultat = $result->fetch_assoc();
+    $type_res = 'error';
+    $msg = 'La salle est déjà réservée';
+}
 //Mise en forme de la sortie
 $response = array(
     "type" => $type_res,
