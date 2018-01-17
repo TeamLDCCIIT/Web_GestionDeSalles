@@ -17,6 +17,8 @@ $motif      = isset($_POST['motif']) ? strval($_POST['motif']) : null;
 $dateDebut  = $date . " " . $debut;
 $dateFin    = $date . " " . $fin;
 
+//TODO : Verifier les dates > < et les keys de database
+
 //Vérification des paramètres
 if(!isnull($id_salle) && $id_salle > 0 && !isnull($dateDebut) && !isnull($dateFin) && !isnull($fin) && !isnull($debut)) {
     //Mise au bon format
