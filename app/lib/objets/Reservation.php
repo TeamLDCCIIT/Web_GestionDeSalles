@@ -154,7 +154,7 @@ class Reservation{
         $fin        =   $reservation->getDateFin();
 
         $query  = "INSERT INTO reservation(id_salle, id_utilisateur, debut, fin) 
-                    VALUES($id_salle, $id_user, $debut, $fin)";
+                    VALUES($id_salle, $id_user, '$debut', '$fin')";
 
         $result = $database->execute($query);
 
