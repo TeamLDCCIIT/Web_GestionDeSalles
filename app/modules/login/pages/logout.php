@@ -6,7 +6,11 @@ $template = new \Tpl\Template(__DIR__ . '/../templates/logout.html');
 $__template->setVar('pagetitle', 'Logout');
 
 //Déconnexion de l'utilisateur
-unset($_SESSION['user']);
+if(isset($_SESSION['user'])) {
+    unset($_SESSION['user']);
+    redirect(_login_module . '-' . _login_page_logout);
+}
+
 
 //FIN - Render du template (compiler le template et l'afficher)
 $template->render($__template, 'content');
