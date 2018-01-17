@@ -30,7 +30,6 @@ class Utilisateur{
 
     /**
      * @var $groupe
-     * TODO : Faire un enum
      */
     private $groupe;
 
