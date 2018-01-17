@@ -40,6 +40,7 @@ Create table Reservation(
 	id_utilisateur smallint NOT NULL,
 	debut TIMESTAMP NOT NULL,
 	fin TIMESTAMP NOT NULL,
+	motif VARCHAR(140) DEFAULT 'Reservation',
 	PRIMARY KEY(id_res),
 	FOREIGN KEY(id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
 	FOREIGN KEY(id_salle) REFERENCES Salles(id_salle),
