@@ -13,3 +13,7 @@ function onButtonAction(data_action, callback) {
 function onSelectChange(data_action, callback) {
     $('select[data-action="' + data_action + '"]').change(callback);
 }
+
+function getValueOfID(id) {
+    return $('#'+id).val();
+}

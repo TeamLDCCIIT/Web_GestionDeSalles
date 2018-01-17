@@ -1,94 +1,136 @@
-<div class="col-sm-6">
-	<div class="box" style="max-height: 100%; max-width: 100%">
-		<div class="box-header" style="color: #444;display: block;padding: 10px;position: relative;">
+<!-- Fenetre de réservation -->
+<div class="col-sm-8">
+    <div class="box">
+        <div class="box-header">
 
-			<div class="col-sm-12 no-padding">
-				<label style="margin-top: 5px" class="col-sm-2 control-label"><U>Campus :</U></label>
-			
-				<div class="col-sm-4">
-					<select class="form-control">
-						<option>Angers</option>
-						<option>Paris</option>
-						<option>Dijon</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 no-padding">
-				<label style="margin-top: 15px" class="col-sm-2 control-label"><U>Date :</U></label>
-			
-				<div class="col-sm-1">
-					<p style="margin-top: 17px">Le</p>
-				</div>
-			
-				<div style="margin-top: 10px"class="col-sm-6 input-group date">
-					<div class="input-group-addon">
-						<i class="fa fa-calendar"></i>
-					</div>
-					<input type="text" data-provide="daterange" class="form-control" id="datepicker">
-				</div>
-			</div>
-			
-			<div class="col-sm-12 no-padding">
-				<div class="col-sm-2">
-				</div>
-				
-				<label style="margin-top: 15px; color: green" class="col-sm-4 control-label"><i class="fa fa-check-circle"></i> 3 salles disponibles</label>
-				
-				<div class="col-sm-4">
-                <button type="button" style="margin-top:10px" class="btn btn-block btn-primary btn-sm"><i class="fa fa-search"></i> Rechercher</button>
-				</div>
-			</div>
-			
-			<div class="col-sm-12 no-padding">
-                  <label style="margin-top: 15px" class="col-sm-2 control-label"><U>Motif :</U></label>
-				  
-                  <textarea class="col-sm-10 form-control" rows="3" placeholder="Enter ..."></textarea>
-			</div>
-			
-			<div class="col-sm-12 no-padding">
-                <div class="col-sm-6">
-                <button type="button" style="margin-top:10px" class="btn btn-block btn-danger btn-sm"><i class="fa fa-times"></i> Annuler</button>
-				</div>
-				
-				<div class="col-sm-6">
-                <button type="button" style="margin-top:10px" class="btn btn-block btn-success btn-sm"><i class="fa fa-check"></i> Valider</button>
-				</div>
-			</div>
-			
-		</div>
-	</div>
+            <!-- Choix du campus -->
+            <div class="row with-margin">
+                <div class="col-sm-12">
+                    <div class="form-group form-group-sm">
+                        <label for="campus_select" class="col-sm-2 control-label" style="padding-top: 4px">Campus : </label>
+                        <div class="col-sm-10">
+                            <select id="campus_select" class="input-sm form-control" data-action="rechercherSalle">
+                                {% for ecole in campus %}
+                                    <option value="{{ ecole.key }}">{{ ecole.value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Choix du campus -->
+
+            <!-- Choix de la date -->
+            <div class="row with-margin">
+                <div class="col-sm-12">
+                    <div class="form-group form-group-sm">
+                        <label for="date_input" class="col-sm-2 control-label" style="padding-top: 4px">Date : </label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input class="form-control pull-right" id="date_input" type="text" data-provide="datepicker">
+                            </div>
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+            </div>
+            <!-- ./Choix de la date -->
+
+            <!-- Choix de l'horaire -->
+            <div class="row with-margin">
+                <div class="col-sm-12">
+                    <div class="form-group form-group-sm">
+                        <label for="dateDebut_input" class="col-sm-2 control-label" style="padding-top: 4px">Horaires : </label>
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    De
+                                </div>
+                                <input class="form-control pull-right" id="dateDebut_input" title="Date de début" type="text" data-provide="timepicker">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    à
+                                </div>
+                                <input class="form-control pull-right" id="dateFin_input" title="Date de fin" type="text" data-provide="timepicker">
+                            </div>
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+            </div>
+            <!-- ./Choix de la date -->
+
+            <!-- Rechercher -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-2"></div>
+                    <!-- Résultat -->
+                    <span class="col-sm-5" style="padding-top: 7px">
+                        <span id="recherche-texte2"></span>
+                    </span>
+                    <!-- Rechercher -->
+                    <div class="col-sm-5">
+                        <button type="button" class="btn btn-block btn-primary btn-sm" data-action="reservation-rechercher-salle">
+                            <i class="fa fa-search"></i> Rechercher
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Rechercher -->
+
+            <!-- Motif -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group col-sm-12">
+                        <label>Motif :</label>
+                        <textarea disabled="" class="form-control" rows="3" placeholder="Dans la prochaine version" style="resize: none" id="motif_input"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Motif -->
+
+            <!-- Boutons -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-block btn-danger btn-sm" data-action="reservation-annuler">
+                            <i class="fa fa-times"></i> Annuler
+                        </button>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-block btn-success btn-sm" data-action="reservation-valider">
+                            <i class="fa fa-check"></i> Valider
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Boutons -->
+
+        </div>
+    </div>
 </div>
 
-<div class="col-sm-6">
-	<div class="box" style="max-height: 100%; max-width: 100%">
-		<div class="box-header" style="color: #444;display: block;padding: 10px;position: relative;">
-			
-			<div class="col-sm-12">
-				<p style="font-size: 20px">3 salles disponibles</p>
-			</div>
-			
-			<div class="col-sm-12">
-				<label>
-					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                      Salle 2
-                </label>
+<!-- Liste des salles - Resultat recherche -->
+<div class="col-sm-4">
+    <div class="box">
+        <div class="box-header with-border">
+            <h4 class="box-title" style="padding-left: 5px">
+                <i class="fa fa-search fa-fw" aria-hidden="true"></i>&nbsp;
+                <span id="recherche-texte"></span>
+            </h4>
+
+        </div>
+        <form>
+            <div class="box-body" id="recherche-salles">
             </div>
-			
-			<div class="col-sm-12">
-				<label>
-					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
-                      Salle 3
-                </label>
-            </div>
-			
-			<div class="col-sm-12">
-				<label>
-					<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" checked="">
-                      Salle 6
-                </label>
-            </div>
-			
-		</div>
-	</div>
+        </form>
+    </div>
 </div>
