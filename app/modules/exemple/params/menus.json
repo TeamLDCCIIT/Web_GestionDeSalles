@@ -1,29 +1,8 @@
 [
-    {
-        "name"      :  "Menu exemple",
-        "icon"      :  "fa-dashboard",
-        "smenus"    :  [
-            {
-                "name" :   "Page Accueil",
-                "icon" :   "fa-home",
-                "link" :   "exemple-accueil"
-            },
-            {
-                "name" :  "Exemple de page",
-                "icon" :   "fa-bug",
-                "link" :   "exemple-page"
-            },
-            {
-                "name" :  "Exemple d'inclusion",
-                "icon" :   "fa-download",
-                "link" :   "exemple-page1"
-            }
-        ]
-    },
 
     {
         "name"  : "Tester le traitement",
         "icon"  : "fa-book",
-        "link"  : "exemple-testTraitement"
+        "link"  : "exemple-page1"
     }
 ]
