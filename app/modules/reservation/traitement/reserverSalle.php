@@ -31,11 +31,10 @@ if(!isnull($id_salle) && $id_salle > 0 && !isnull($dateDebut) && !isnull($dateFi
         //Vérification des paramètres de date
         if(new DateTime($dateDebut) < new DateTime($dateFin)) {
             //Vérifier la disponibilité de la salle pour la date donnée
-            //TODO - Methode de jeremie
-            $salleDispo = true;
+            $salleDispo = isDispo($db, $salle->getId(), $dateDebut, $dateFin);
 
             //Initialisation de la réservation
-            $reservation    = new \lib\objets\Reservation(-1, $dateDebut, $dateFin, $utilisateur, $salle);
+            $reservation    = new \lib\objets\Reservation(-1, $dateDebut, $dateFin, $utilisateur, $salle, $motif);
 
             //Si la salle est dispo
             if($salleDispo) {

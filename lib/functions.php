@@ -213,7 +213,7 @@ function getDateTimeSqlFormat($frenchFormat) {
  */
 function getUtilisateur() {
     if(isset($_SESSION['user'])) {
-        $id = $_SESSION['user']['id'];
+        $id = $_SESSION['user']['id_utilisateur'];
         return \lib\objets\Utilisateur::getUtilisateurByID(new PgSqlLib(), $id);
     } else {
         return null;
