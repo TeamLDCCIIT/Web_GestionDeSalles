@@ -17,8 +17,6 @@ $motif      = isset($_POST['motif']) ? strval($_POST['motif']) : null;
 $dateDebut  = $date . " " . $debut;
 $dateFin    = $date . " " . $fin;
 
-//TODO : Verifier les dates > < et les keys de database
-
 //Vérification des paramètres
 if(!isnull($id_salle) && $id_salle > 0 && !isnull($dateDebut) && !isnull($dateFin) && !isnull($fin) && !isnull($debut)) {
     //Mise au bon format
@@ -28,31 +26,37 @@ if(!isnull($id_salle) && $id_salle > 0 && !isnull($dateDebut) && !isnull($dateFi
 
     //Récupérer l'utilisateur ID (Vérifier si il est connecté)
     $utilisateur    = getUtilisateur();
-    //TODO
-    $utilisateur = new \lib\objets\Utilisateur(1, 'LG', 'Tristan', 'tlegacque', 'user', \lib\objets\Campus::getCampusByID($db, 1));
     if(!isnull($utilisateur)) {
-        //Vérifier la disponibilité de la salle pour la date donnée
-        //TODO - Methode de jeremie
-        $salleDispo = true;
 
-        //Initialisation de la réservation
-        $reservation    = new \lib\objets\Reservation(-1, $dateDebut, $dateFin, $utilisateur, $salle);
+        //Vérification des paramètres de date
+        if(new DateTime($dateDebut) < new DateTime($dateFin)) {
+            //Vérifier la disponibilité de la salle pour la date donnée
+            //TODO - Methode de jeremie
+            $salleDispo = true;
 
-        if($salleDispo) {
-            //Enregistrer la réservation
-            $result = \lib\objets\Reservation::saveReservation($db, $reservation);
+            //Initialisation de la réservation
+            $reservation    = new \lib\objets\Reservation(-1, $dateDebut, $dateFin, $utilisateur, $salle);
 
-            if($result) {
-                $response['type']       = "success";
-                $response['message']    = "La réservation a bien été effectuée";
+            //Si la salle est dispo
+            if($salleDispo) {
+                //Enregistrer la réservation
+                $result = \lib\objets\Reservation::saveReservation($db, $reservation);
+
+                if($result) {
+                    $response['type']       = "success";
+                    $response['message']    = "La réservation a bien été effectuée";
+                } else {
+                    //Erreur d'enregistrement
+                    $response['message'] = "Impossible d'effectuer la requête d'enregistrement pour la salle " . $salle->getNom();
+                }
             } else {
-                //Erreur d'enregistrement
-                $response['message'] = "Impossible d'effectuer la requête d'enregistrement pour la salle " . $salle->getNom();
+                //Salle non disponible
+                $response['message'] = "La salle " . $salle->getNom() . " (" . $salle->getCode() . ") n'est pas disponible ";
+                $response['message'] .= "entre " . $reservation->getDateDebut() . " et " . $reservation->getDateFin();
             }
         } else {
-            //Salle non disponible
-            $response['message'] = "La salle " . $salle->getNom() . " (" . $salle->getCode() . ") n'est pas disponible ";
-            $response['message'] .= "entre " . $reservation->getDateDebut() . " et " . $reservation->getDateFin();
+            //La date de debut doit être inférieure a celle de fin
+            $response['message'] = "La date de debut doit être antérieure à la date de fin";
         }
     } else {
         //Utilisateur non connecté
