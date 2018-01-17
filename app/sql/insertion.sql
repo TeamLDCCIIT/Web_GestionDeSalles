@@ -12,36 +12,36 @@ INSERT INTO campus(nom, adresse, tel) VALUES('DIJON', '97 Rue de Talant','038058
 
 /*insertion des utilisateurs*/
 /*mdp = le prénom, hachage = sha-256*/
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('tlegacque', '306331a6fe5c4bb7a01317402fd1b44b4927c118c450085491f294f5d3b290b6', 'LE GACQUE', 'Tristan', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('tlegacque', '306331a6fe5c4bb7a01317402fd1b44b4927c118c450085491f294f5d3b290b6', 'LE GACQUE', 'Tristan', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('alefort', '8c4fd8b2c24ffcc223dbf09088bd79734e8404cd4d9e90fc418ecb490622d1ca', 'LEFORT', 'Alexis', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('alefort', '8c4fd8b2c24ffcc223dbf09088bd79734e8404cd4d9e90fc418ecb490622d1ca', 'LEFORT', 'Alexis', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('acvergote', '685203ae11bc5f847f19ac567f569712780e2b01daf82e94d3db6a534b2ee43f', 'VERGOTE', 'Anne\-claire', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('acvergote', '685203ae11bc5f847f19ac567f569712780e2b01daf82e94d3db6a534b2ee43f', 'VERGOTE', 'Anne\-claire', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('cmerand', 'c06f5d9112e70a0521967f3ab5651dc448b04275d19b356a2e8ece4e2449320c', 'MERAND', 'Céline', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('cmerand', 'c06f5d9112e70a0521967f3ab5651dc448b04275d19b356a2e8ece4e2449320c', 'MERAND', 'Céline', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('jsoulard', 'e352295313877c67718746ee25fbd68e6b5dd6dc622c297000572540c0b78f07', 'SOULARD', 'Jérémie', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('jsoulard', 'e352295313877c67718746ee25fbd68e6b5dd6dc622c297000572540c0b78f07', 'SOULARD', 'Jérémie', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('fmigne', '231b0997d6ba040db9728a5cece5414d636e94c590418c08dff7df232861351f', 'MIGNE', 'Florent', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('fmigne', '231b0997d6ba040db9728a5cece5414d636e94c590418c08dff7df232861351f', 'MIGNE', 'Florent', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('jzwolinski', '4ff17bc8ee5f240c792b8a41bfa2c58af726d83b925cf696af0c811627714c85', 'ZWOLINSKI', 'Jean', 'user');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('jzwolinski', '4ff17bc8ee5f240c792b8a41bfa2c58af726d83b925cf696af0c811627714c85', 'ZWOLINSKI', 'Jean', 'user', 1);
 
 
-INSERT INTO utilisateur(login, password, nom, prenom, groupe)
-VALUES('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'ADMIN', 'Admin', 'admin');
+INSERT INTO utilisateur(login, password, nom, prenom, groupe, id_campus)
+VALUES('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'ADMIN', 'Admin', 'admin', 1);
 
 
 /*insertion des salles ANGERS*/
