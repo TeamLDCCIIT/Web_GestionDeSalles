@@ -2,9 +2,6 @@
  * Created by Tristan LE GACQUE on 14/01/2018.
  */
 
-function onAction(selector, data_action, callback) {
-    $(selector+'[data-action="' + data_action + '"]').click(callback);
-}
 
 function onButtonAction(data_action, callback) {
     $('button[data-action="' + data_action + '"]').click(callback);
@@ -21,3 +18,14 @@ function getValueOfID(id) {
 function redirect(url) {
     window.location.replace(url);
 }
+
+//Fonctions maison
+$(function(){
+    $.fn.pressEnter = function(callback) {
+        this.keyup(function(e) {
+            if (e.keyCode === 13) {
+                callback();
+            }
+        });
+    }
+});
