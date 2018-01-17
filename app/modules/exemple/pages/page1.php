@@ -1,18 +1,12 @@
 <?php
-//TODO - Essayer l'inclusion de page
-//Définition du template
-$template = new \Tpl\Template(__DIR__ . '/../templates/page.html');
 
-//SOME STUFF
+$db = new PgSqlLib();
+$id_salle = 5;
+$debut = '2018-04-21 12:34:10';
+$fin = '2018-04-21 14:59:54';
 
-//Définition des variables
-$template->setVar('message', 'Coucou toi');
-$template->setVar('nom', 'Le Gacque');
-$template->setVar('prenom', 'Tristan');
-$template->setVar('variables', $template->variables);
+$disp = isDispo($db, $id_salle, $debut, $fin);
+$msg = $disp ? 'success' : 'error';
+echo $msg;
 
-//Inclure un block
-include('page_a_inclure.php');
-
-//FIN - Render du template
-$template->render($__template, 'content');
+die();
