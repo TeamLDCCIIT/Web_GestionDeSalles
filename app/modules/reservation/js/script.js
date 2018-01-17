@@ -9,6 +9,9 @@ const _action_rechercherSalleDispo  = 'reservation-rechercher-salle',
 const _identifier_recherche_texte   = 'recherche-texte',
     _identifier_recherche_texte2    = 'recherche-texte2',
     _identifier_recherche_resultat  = 'recherche-salles';
+
+const _url_liste_des_salles         = 'listing-listeDesSalles';
+
 //TODO
 
 $(function() {
@@ -25,30 +28,6 @@ $(function() {
     $('input[data-provide="timepicker"]').timepicker({
         minuteStep: 15,
         showMeridian: false
-    });
-
-
-    onButtonAction(_action_rechercherSalleDispo, rechercherSallesDispo);
-
-    reinitialiserRecherche();
-
-    //Envoyer une reservation
-    onButtonAction(_action_valider_reservation, function() {
-        //Récupération des valeurs
-        var date         = getValueOfID('date_input');
-        var temps_debut  = getValueOfID('dateDebut_input');
-        var temps_fin    = getValueOfID('dateFin_input');
-        var motif        = getValueOfID('motif_input');
-        var salle_id     = $('input[name="optionsRadios"]:checked').val();
-
-        const data   = 'date='+date+ '&debut='+temps_debut+ '&fin='+temps_fin+ '&motif='+motif+ '&salle='+salle_id;
-        submitAjaxRequest('traitement-reservation-reserverSalle', data, function(resp) {
-            if(resp.type === 'success') {
-                toastr.success(resp.message);
-            } else {
-                toastr.error(resp.message);
-            }
-        })
     });
 
     //Rechercher les salles disponibles
@@ -98,12 +77,50 @@ $(function() {
 
     }
 
+    /**
+     * Reinitialise les champs de resultat de recherche (id des salles)
+     */
     function reinitialiserRecherche() {
         const icon = '<i class="fa fa-hourglass-half"></i>&nbsp;';
         $('#' + _identifier_recherche_texte).html('<span class="text-warning">En attente de recherche</span>');
         $('#' + _identifier_recherche_texte2).html('<span class="text-warning">'+icon+'En attente de recherche</span>');
         $('#' + _identifier_recherche_resultat).html('');
     }
+
+
+    //-- INITIALISATION DES BOUTONS
+
+    //Bouton rechercher
+    onButtonAction(_action_rechercherSalleDispo, rechercherSallesDispo);
+
+    //Envoyer une reservation
+    onButtonAction(_action_valider_reservation, function() {
+        //Récupération des valeurs
+        var date         = getValueOfID('date_input');
+        var temps_debut  = getValueOfID('dateDebut_input');
+        var temps_fin    = getValueOfID('dateFin_input');
+        var motif        = getValueOfID('motif_input');
+        var salle_id     = $('input[name="optionsRadios"]:checked').val();
+
+        const data   = 'date='+date+ '&debut='+temps_debut+ '&fin='+temps_fin+ '&motif='+motif+ '&salle='+salle_id;
+        submitAjaxRequest('traitement-reservation-reserverSalle', data, function(resp) {
+            if(resp.type === 'success') {
+                toastr.success(resp.message);
+                redirect(_url_liste_des_salles);
+            } else {
+                toastr.error(resp.message);
+            }
+        })
+    });
+
+    //Annuler
+    onButtonAction(_action_annuler_reservation, function() {
+        redirect(_url_liste_des_salles);
+    });
+
+
+    //-- INITIALISATION DE LA PAGE
+    reinitialiserRecherche();
 
 });
 

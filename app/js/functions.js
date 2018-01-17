@@ -17,3 +17,7 @@ function onSelectChange(data_action, callback) {
 function getValueOfID(id) {
     return $('#'+id).val();
 }
+
+function redirect(url) {
+    window.location.replace(url);
+}
