@@ -3,18 +3,26 @@
  */
 $(function() {
 
-    $('button[data-action="login"]').click(function(){
-        var login = $('input[id="InputUsername"]').val();
-        var pass = $('input[id="InputPassword"]').val();
-        submitAjaxRequest("traitement-login-retourLogin", 'InputUsername='+login+'&InputPassword='+pass, function(resp){
-            console.log(resp);
-        });
-    });
+    function login() {
+        var login = getValueOfID('InputUsername');
+        var pass = getValueOfID('InputPassword');
 
-    onButtonAction('logout', function() {
-        submitAjaxRequest("traitement-login-deconnexion", '', function(resp){
-            console.log(resp);
+        submitAjaxRequest("traitement-login-retourLogin", 'InputUsername='+login+'&InputPassword='+pass, function(resp){
+            if(resp.type === 'success') {
+                toastr.success('Vous êtes bien connecté !');
+                window.setTimeout(function(){
+                    redirect('index.php');
+                }, 500);
+            } else {
+                //Vider le mot de passe
+                $('#InputPassword').val('');
+                toastr.error('Erreur de connexion, vérifiez vos identifiants');
+            }
         });
-    });
+    }
+
+    onButtonAction('login', login);
+    $('#InputPassword').pressEnter(login);
+    $('#InputUsername').pressEnter(login);
 
 });
