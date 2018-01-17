@@ -20,9 +20,10 @@ require_once __DIR__ . '/lib/SQLLib/PgConnect.php'; //Load de l'objet SQL
 require_once __DIR__ . '/lib/functions.php'; //Load des fonctions du framework
 
 //Chargement des paramètres
-require_once __DIR__ . '/params/params.php'; //Load des paramètres
-if(@is_file(__DIR__  . "/params/params_" .$_SERVER["SERVER_NAME"].".php")) {
-    @include("params/params_".$_SERVER["SERVER_NAME"].".php");
+if(@is_file(__DIR__  . "/params/params_" . $_SERVER["SERVER_NAME"] . ".php")) {
+    @include(__DIR__  . "/params/params_" . $_SERVER["SERVER_NAME"] . ".php");
+} else {
+    require_once __DIR__ . '/params/params.php'; //Load des paramètres
 }
 
 //Sécurisation des paramètres GET

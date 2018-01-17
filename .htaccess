@@ -20,6 +20,5 @@ RewriteRule ^([a-zA-Z1-9]+)-([a-zA-Z1-9]+)$ index.php?module=$1&page=$2 [L,NS,QS
 RewriteRule ^$  index.php [L]
 
 # Redirection des pages d'erreur
-#TODO - Changer par l'absolute path de la ressource
-ErrorDocument 404 /TwigTest/index.php?page=404
+ErrorDocument 404 /Web_GestionDeSalles/index.php?page=404
 
