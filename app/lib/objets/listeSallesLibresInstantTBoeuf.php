@@ -17,7 +17,7 @@ function listeLibreAt2($db, $debut, $fin){
      * Reservation.id_salle IN (SELECT id_salle FROM Salles)
      * --> une salle qui a une réservation ne doit pas être prise dans le créneau horaire indiqué
      */
-    $req = "SELECT Salles.id_salle FROM Salles, Reservation 
+    $req = "SELECT DISTINCT Salles.id_salle FROM Salles, Reservation 
     WHERE NOT (Reservation.id_salle IN (SELECT id_salle FROM Salles) AND 
     (('" . $debut . "' < Reservation.debut AND Reservation.debut < '" . $fin . "' OR 
     '" . $debut . "' < Reservation.fin AND Reservation.fin <  '" . $fin . "') OR 
