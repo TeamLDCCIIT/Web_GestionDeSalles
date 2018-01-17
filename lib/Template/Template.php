@@ -6,9 +6,6 @@ namespace Tpl;
 class Template
 {
 
-    //TODO - Peut etre gérer autrement, comme dans phpStruct
-    //TODO - Cad utiliser $__template et définir des sous templates par nom
-    //TODO - Regarder PhpStruct
     var $variables;
     var $template;
 
