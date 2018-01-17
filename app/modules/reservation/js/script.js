@@ -106,7 +106,9 @@ $(function() {
         submitAjaxRequest('traitement-reservation-reserverSalle', data, function(resp) {
             if(resp.type === 'success') {
                 toastr.success(resp.message);
-                redirect(_url_liste_des_salles);
+                window.setTimeout(function(){
+                    redirect(_url_liste_des_salles);
+                }, 1000);
             } else {
                 toastr.error(resp.message);
             }
