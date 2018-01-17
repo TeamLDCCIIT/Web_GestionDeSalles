@@ -28,6 +28,7 @@ foreach($reservations as $resa) {
 
 $template->setVar('reservations', $reservations_tri);
 //Faire en TWIG
+//TODO
 
 
 //FIN - Render du template (compiler le template et l'afficher)
