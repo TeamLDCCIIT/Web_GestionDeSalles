@@ -138,7 +138,7 @@ class Reservation{
      */
     public static function getUserReservations($database, $user_id) {
         $query  = "SELECT id_res, id_salle, id_utilisateur, debut, fin, motif
-                    FROM reservation WHERE id_utilisateur=".intval($user_id);
+                    FROM reservation WHERE id_utilisateur=".intval($user_id)." ORDER BY debut";
         $result = $database->query($query);
 
         if($result) {

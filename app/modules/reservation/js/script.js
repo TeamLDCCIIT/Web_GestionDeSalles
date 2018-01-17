@@ -118,6 +118,11 @@ $(function() {
         redirect(_url_liste_des_salles);
     });
 
+    //Réinitialisation en cas de changement de filtre
+    $("#select_campus").change(reinitialiserRecherche);
+    $("#dateDebut_input").change(reinitialiserRecherche);
+    $("#dateFin_input").change(reinitialiserRecherche);
+    $("#date_input").change(reinitialiserRecherche);
 
     //-- INITIALISATION DE LA PAGE
     reinitialiserRecherche();
