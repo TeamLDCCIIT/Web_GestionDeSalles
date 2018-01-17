@@ -11,3 +11,8 @@
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+.with-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
