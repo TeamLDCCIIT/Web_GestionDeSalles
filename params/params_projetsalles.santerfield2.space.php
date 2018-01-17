@@ -9,10 +9,10 @@ define('_sql_password', 'dev');
 define('_sql_db', 'salles');
 
 //Paramètres globaux
-define("_debug", true);
+define("_debug", false);
 define("_accueil_module", 'exemple');
 define("_accueil_page", 'accueil');
-define("_app_name", '<b>Appli</b>GDS');
+define("_app_name", '<b>Gestion</b> de salles');
 define("_app_smallname", '<b>G</b>DS');
 define("_root", '');
 
