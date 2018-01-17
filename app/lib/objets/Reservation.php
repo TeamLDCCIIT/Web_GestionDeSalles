@@ -34,6 +34,11 @@ class Reservation{
     private $salle;
 
     /**
+     * @var string
+     */
+    private $motif;
+
+    /**
      * Reservation constructor.
      * @param int $id
      * @param string $dateDebut format YY-MM-DD HH:II:SS
@@ -41,13 +46,14 @@ class Reservation{
      * @param Utilisateur $utilisateur
      * @param Salle $salle
      */
-    public function __construct($id, $dateDebut, $dateFin, Utilisateur $utilisateur, Salle $salle)
+    public function __construct($id, $dateDebut, $dateFin, Utilisateur $utilisateur, Salle $salle, $motif)
     {
         $this->id = $id;
         $this->dateDebut = $dateDebut;
         $this->dateFin = $dateFin;
         $this->utilisateur = $utilisateur;
         $this->salle = $salle;
+        $this->motif = $motif;
     }
 
     /**
@@ -90,6 +96,15 @@ class Reservation{
         return $this->salle;
     }
 
+    /**
+     * @return string
+     */
+    public function getMotif()
+    {
+        return $this->motif;
+    }
+
+
 
     /**
      * Retourne l'objet Reservation correspondant à l'identifiant passé en paramètre
@@ -99,7 +114,7 @@ class Reservation{
      * @throws \ErrorException Si la reservation n'existe pas
      */
     public static function getReservationByID($database, $id) {
-        $query  = "SELECT id_res, id_salle, id_utilisateur, debut, fin
+        $query  = "SELECT id_res, id_salle, id_utilisateur, debut, fin, motif
                     FROM reservation WHERE id_res=".intval($id);
         $result = $database->query($query);
 
@@ -108,7 +123,7 @@ class Reservation{
 
             return new Reservation($row['id_res'], $row['debut'], $row['fin'],
                 Utilisateur::getUtilisateurByID($database, $row['id_utilisateur']),
-                Salle::getSalleByID($database, $row['id_salle']));
+                Salle::getSalleByID($database, $row['id_salle']), $row['motif']);
         } else {
             throw new \ErrorException('La réservation recherchée n\'existe pas : '.$id);
         }
@@ -122,7 +137,7 @@ class Reservation{
      * @throws \ErrorException
      */
     public static function getUserReservations($database, $user_id) {
-        $query  = "SELECT id_res, id_salle, id_utilisateur, debut, fin
+        $query  = "SELECT id_res, id_salle, id_utilisateur, debut, fin, motif
                     FROM reservation WHERE id_utilisateur=".intval($user_id);
         $result = $database->query($query);
 
@@ -131,7 +146,7 @@ class Reservation{
             while($row = $result->fetch_assoc()) {
                 array_push($reservations, new Reservation($row['id_res'], $row['debut'], $row['fin'],
                     Utilisateur::getUtilisateurByID($database, $row['id_utilisateur']),
-                    Salle::getSalleByID($database, $row['id_salle'])));
+                    Salle::getSalleByID($database, $row['id_salle']), $row['motif']));
             }
 
             return $reservations;
@@ -152,9 +167,11 @@ class Reservation{
         $id_user    =   $reservation->getUtilisateur()->getId();
         $debut      =   $reservation->getDateDebut();
         $fin        =   $reservation->getDateFin();
+        $motif      =   $reservation->getMotif();
+        $database->purify($motif);
 
-        $query  = "INSERT INTO reservation(id_salle, id_utilisateur, debut, fin) 
-                    VALUES($id_salle, $id_user, '$debut', '$fin')";
+        $query  = "INSERT INTO reservation(id_salle, id_utilisateur, debut, fin, motif) 
+                    VALUES($id_salle, $id_user, '$debut', '$fin', '$motif')";
 
         $result = $database->execute($query);
 
