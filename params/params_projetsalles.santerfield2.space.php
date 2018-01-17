@@ -4,9 +4,9 @@
  */
 //Paramètres SQL
 define('_sql_host', '127.0.0.1');
-define('_sql_login', 'postgres');
-define('_sql_password', 'postgre');
-define('_sql_db', 'gds');
+define('_sql_login', 'dev');
+define('_sql_password', 'dev');
+define('_sql_db', 'salles');
 
 //Paramètres globaux
 define("_debug", true);
