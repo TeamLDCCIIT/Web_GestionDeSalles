@@ -1,7 +1,7 @@
 [
     {
-        "name"      :  "Liste des réservations",
-        "icon"      :  "fa-calendar",
+        "name"      :  "Mes réservations",
+        "icon"      :  "fa-calendar text-warning",
         "link"      :  "listereservation-listereservation"
     }
 ]

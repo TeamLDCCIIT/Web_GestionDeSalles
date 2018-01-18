@@ -1,0 +1,20 @@
+//TODO - En attente de Jean
+//Récupérer la page logout de Jean
+
+//Finit la liste des réservations d'un utilisateur
+// Voir avec jean pour l'affichage
+// Finir la fonction de mise en palce, en utilisant twig
+
+
+//TODO - Now
+//Possibilité de supprimer une réservation ?
+//Possibilité de voir une réservation ?
+
+
+//Faire une interface pour créer une salle / campus / utilisateur ?
+// => Peut etre trop ambitieux (surement)
+
+
+
+//Faire en sorte d'avoir min-height = 100vh mais qui s'expend tout le temps
+//Trouver une favicon

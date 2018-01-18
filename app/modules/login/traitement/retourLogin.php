@@ -15,7 +15,7 @@ $result = $db->query($req);
 //Authentification et affectation de la variable $_SESSION
 if($result->num_rows() !== 1){
     $type_res = 'error';
-    $msg = "login error";
+    $msg = "Erreur de connexion";
 } else {
     $resultat = $result->fetch_assoc();
     $id_utilisateur = $resultat['id_utilisateur'];
@@ -24,7 +24,7 @@ if($result->num_rows() !== 1){
     $_SESSION['user']['username'] = $login;
     $_SESSION['user']['group'] = array($groupe);
     $type_res = 'success';
-    $msg = "PAPA DANS MAMAN ";
+    $msg = "Connexion reussie";
 
 };
 //Fermeture de la connexion

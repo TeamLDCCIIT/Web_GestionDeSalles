@@ -1,7 +1,7 @@
 [
     {
-        "name"      :  "Réservation",
-        "icon"      :  "fa-clock-o",
+        "name"      :  "Réserver une salle",
+        "icon"      :  "fa-clock-o text-blue",
         "link"      :  "reservation-reservation"
     }
 ]

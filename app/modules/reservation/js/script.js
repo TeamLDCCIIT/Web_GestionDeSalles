@@ -12,8 +12,6 @@ const _identifier_recherche_texte   = 'recherche-texte',
 
 const _url_liste_des_salles         = 'listing-listeDesSalles';
 
-//TODO
-
 $(function() {
 
     //datePicker
@@ -37,45 +35,46 @@ $(function() {
             '<div class="col-sm-12">' +
             ' <label>' +
             '  <input type="radio" name="optionsRadios" id="option_{id_salle}" value="{id_salle}">&nbsp;' +
-            '    {nom_salle} ({code_salle})' +
+            '   <i class="fa fa-{icon_salle} fa-fw" aria-hidden="true" title="{type_salle}"></i>&nbsp;' +
+            '    {nom_salle} ({code_salle}) ' +
             '  </label>' +
             '</div>';
 
         //Faire la recherche
-        //TODO
+        var date            = getValueOfID('date_input');
+        var temps_debut     = getValueOfID('dateDebut_input');
+        var temps_fin       = getValueOfID('dateFin_input');
+        var campus_id       = getValueOfID('campus_select');
+        const data          = 'campus='+campus_id+ '&date='+date+ '&debut='+temps_debut+ '&fin='+temps_fin;
 
-        //Résultat de la recherche
-        //TODO
-        var result = [{
-            nom: 'salle1',
-            code: 'A001',
-            id: 2
-        },{
-            nom: 'salle2',
-            code: 'A002',
-            id: 3
-        },{
-            nom: 'salle4',
-            code: 'A004',
-            id: 4
-        }];
+        //Envoyer la requête ajax
+        submitAjaxRequest('traitement-reservation-recupererSallesDispo', data, function(resp) {
+            if(resp.type === 'success') {
+                var result = resp.salles;
 
-        //Mise en forme de la recherche
-        const color = result.length > 0 ? 'green' : 'red';
-        const icon  = result.length > 0 ? '<i class="fa fa-check-circle"></i>&nbsp;' : '<i class="fa fa-times-circle"></i>&nbsp;';
+                //Mise en forme de la recherche
+                const color = result.length > 0 ? 'green' : 'red';
+                const icon  = result.length > 0 ? '<i class="fa fa-check-circle"></i>&nbsp;' : '<i class="fa fa-times-circle"></i>&nbsp;';
 
-        $('#' + _identifier_recherche_texte).html('<span class="text-'+color+'">'+result.length + ' salles disponibles'+'</span>');
-        $('#' + _identifier_recherche_texte2).html('<span class="text-'+color+'">'+icon+result.length + ' salles disponibles'+'</span>');
-        $.each(result, function(id, salle) {
-            $('#' + _identifier_recherche_resultat).append(
-                element.replace('{nom_salle}', salle.nom)
-                    .replace('{code_salle}', salle.code)
-                    .replace('{id_salle}', salle.id)
-                    .replace('{id_salle}', salle.id)
-            )
-        })
+                $('#' + _identifier_recherche_texte).html('<span class="text-'+color+'">'+result.length + ' salles disponibles'+'</span>');
+                $('#' + _identifier_recherche_texte2).html('<span class="text-'+color+'">'+icon+result.length + ' salles disponibles'+'</span>');
+                $.each(result, function(id, salle) {
+                    $('#' + _identifier_recherche_resultat).append(
+                        element.replace('{nom_salle}', salle.nom)
+                            .replace('{code_salle}', salle.code)
+                            .replace('{id_salle}', salle.id)
+                            .replace('{id_salle}', salle.id)
+                            .replace('{icon_salle}', salle.icon)
+                            .replace('{type_salle}', salle.type)
+                    )
+                });
 
+            } else {
+                toastr.error(resp.message);
+            }
+        });
     }
+
 
     /**
      * Reinitialise les champs de resultat de recherche (id des salles)
@@ -120,6 +119,11 @@ $(function() {
         redirect(_url_liste_des_salles);
     });
 
+    //Réinitialisation en cas de changement de filtre
+    $("#select_campus").change(reinitialiserRecherche);
+    $("#dateDebut_input").change(reinitialiserRecherche);
+    $("#dateFin_input").change(reinitialiserRecherche);
+    $("#date_input").change(reinitialiserRecherche);
 
     //-- INITIALISATION DE LA PAGE
     reinitialiserRecherche();

@@ -37,6 +37,30 @@ class TypeSalle extends BasicEnum {
     }
 
     /**
+     * Récupère l'icon correspondant à la salle
+     * @param $type
+     * @return string
+     */
+    public static function getIcon($type) {
+        switch ($type) {
+            case TypeSalle::INCONNU:
+                return "";
+            case TypeSalle::SALLE_CLASSE:
+                return "book";
+            case TypeSalle::SALLE_REUNION:
+                return "group";
+            case TypeSalle::AMPHI:
+                return "institution";
+            case TypeSalle::LAB_INFORMATIQUE:
+                return "desktop";
+            case TypeSalle::LAB_ELECTRONIQUE:
+                return "microchip";
+            default:
+                return "";
+        }
+    }
+
+    /**
      * Récupère le type correspondant au nom
      * @param $nom string
      * @return int

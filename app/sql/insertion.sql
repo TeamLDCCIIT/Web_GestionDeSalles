@@ -72,13 +72,13 @@ VALUES('Bell', 'A401', 1, 'Salle de classe', 4);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Bernouilli', 'A402', 1, 'Salle de classe', 4);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('Blondel', 'A205', 1, 'Lab. Electronqiue', 2);
+VALUES('Blondel', 'A205', 1, 'Lab. Electronique', 2);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Bode', 'B204', 1, 'Lab. Electronique', 2);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Bohr', 'A411', 1, 'Salle de classe', 4);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('Boole', 'A209', 1, 'Lab. Electronqiue', 2);
+VALUES('Boole', 'A209', 1, 'Lab. Electronique', 2);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Bragg', 'B119', 1, 'Lab. Informatique', 1);
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)

@@ -10,9 +10,9 @@ define('_sql_db', 'gds');
 
 //Paramètres globaux
 define("_debug", true);
-define("_accueil_module", 'exemple');
-define("_accueil_page", 'accueil');
-define("_app_name", '<b>Appli</b>GDS');
+define("_accueil_module", 'listing');
+define("_accueil_page", 'listeDesSalles');
+define("_app_name", '<b>Gestion</b> de salles');
 define("_app_smallname", '<b>G</b>DS');
 define("_root", '/Web_GestionDeSalles');
 
