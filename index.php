@@ -26,6 +26,7 @@ if(@is_file(__DIR__  . "/params/params_" . $_SERVER["SERVER_NAME"] . ".php")) {
     require_once __DIR__ . '/params/params.php'; //Load des paramètres
 }
 
+setlocale(LC_TIME, 'fr_FR.utf8','fra');
 //Sécurisation des paramètres GET
 secureArray($_GET);
 
