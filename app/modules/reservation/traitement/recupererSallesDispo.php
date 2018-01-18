@@ -24,28 +24,7 @@ if(!isnull($id_campus) && !isnull($dateDebut) && !isnull($dateFin) && !isnull($f
 
     if(new DateTime($dateDebut) < new DateTime($dateFin)) {
 
-        //TODO - Fonction de Jérémie
-        $salles = array(
-            array(
-                'id'    =>  1,
-                'nom'   =>  'Salle 1',
-                'code'  =>  'A001',
-                'icon'  =>  TypeSalle::getIcon(TypeSalle::SALLE_CLASSE)
-            ),
-            array(
-                'id'    =>  2,
-                'nom'   =>  'Salle 2',
-                'code'  =>  'A002',
-                'icon'  =>  TypeSalle::getIcon(TypeSalle::LAB_ELECTRONIQUE)
-            ),
-            array(
-                'id'    =>  3,
-                'nom'   =>  'Salle 3',
-                'code'  =>  'A001',
-                'icon'  =>  TypeSalle::getIcon(TypeSalle::LAB_INFORMATIQUE)
-            )
-        ); //TODO - Jérémie
-
+        $salles = getSallesDispoAt($db, $dateDebut, $dateFin, $id_campus);
 
         if($salles) {
             $response['type']       = 'success';

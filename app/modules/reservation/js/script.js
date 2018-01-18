@@ -35,23 +35,23 @@ $(function() {
             '<div class="col-sm-12">' +
             ' <label>' +
             '  <input type="radio" name="optionsRadios" id="option_{id_salle}" value="{id_salle}">&nbsp;' +
-            '   <i class="fa fa-{icon_salle} fa-fw" aria-hidden="true"></i>&nbsp;' +
+            '   <i class="fa fa-{icon_salle} fa-fw" aria-hidden="true" title="{type_salle}"></i>&nbsp;' +
             '    {nom_salle} ({code_salle}) ' +
             '  </label>' +
             '</div>';
 
         //Faire la recherche
-        var date         = getValueOfID('date_input');
-        var temps_debut  = getValueOfID('dateDebut_input');
-        var temps_fin    = getValueOfID('dateFin_input');
-        var campus_id    = getValueOfID('campus_select');
-        const data   = 'campus='+campus_id+ '&date='+date+ '&debut='+temps_debut+ '&fin='+temps_fin;
+        var date            = getValueOfID('date_input');
+        var temps_debut     = getValueOfID('dateDebut_input');
+        var temps_fin       = getValueOfID('dateFin_input');
+        var campus_id       = getValueOfID('campus_select');
+        const data          = 'campus='+campus_id+ '&date='+date+ '&debut='+temps_debut+ '&fin='+temps_fin;
 
         //Envoyer la requête ajax
         submitAjaxRequest('traitement-reservation-recupererSallesDispo', data, function(resp) {
             if(resp.type === 'success') {
                 var result = resp.salles;
-                console.log(result);
+
                 //Mise en forme de la recherche
                 const color = result.length > 0 ? 'green' : 'red';
                 const icon  = result.length > 0 ? '<i class="fa fa-check-circle"></i>&nbsp;' : '<i class="fa fa-times-circle"></i>&nbsp;';
@@ -65,6 +65,7 @@ $(function() {
                             .replace('{id_salle}', salle.id)
                             .replace('{id_salle}', salle.id)
                             .replace('{icon_salle}', salle.icon)
+                            .replace('{type_salle}', salle.type)
                     )
                 });
 
