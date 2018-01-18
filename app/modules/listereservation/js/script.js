@@ -5,7 +5,8 @@
 $(function() {
 	
 	// this will use clndr's default template, which you probably don't want.
-$('#full-clndr').clndr();
+    moment.locale('fr');
+    $('#full-clndr').clndr();
 
  
 });
