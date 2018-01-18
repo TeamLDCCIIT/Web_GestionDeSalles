@@ -7,8 +7,7 @@ const _action_rechercher_salles     =   'rechercherSalle';
 const _identifier_salles_tableau    =   'listeSalles',
     _identifier_select_campus       =   'campus_select',
     _identifier_select_etage        =   'etage_select',
-    _identifier_select_type         =   'type_select',
-    _identifier_tri                 =   'th';
+    _identifier_select_type         =   'type_select';
 
 $(function() {
 
@@ -44,7 +43,7 @@ $(function() {
                             );
                         });
                     } else {
-                        table.html('<tr><td colspan="4" align="center">Aucun résultat</td></tr>');
+                        table.html('<tr><td colspan="4" align="center">Aucun résultat ¯\\_(ツ)_/¯</td></tr>');
                     }
 
                 } else {
