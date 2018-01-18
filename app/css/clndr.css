@@ -85,7 +85,7 @@
   opacity: 0.3;
 }
 #full-clndr .clndr-grid .days .today {
-  background-color: white;
+  background-color: blue;
   background-image: none;
 }
 #full-clndr .event-listing {
@@ -508,4 +508,8 @@
   border-right: 3px solid whitesmoke;
   /*height: 50px;
   width: 80px;*/
+}
+
+.day.today{
+  background-color: white;
 }
