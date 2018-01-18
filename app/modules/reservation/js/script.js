@@ -10,7 +10,7 @@ const _identifier_recherche_texte   = 'recherche-texte',
     _identifier_recherche_texte2    = 'recherche-texte2',
     _identifier_recherche_resultat  = 'recherche-salles';
 
-const _url_liste_des_salles         = 'listing-listeDesSalles';
+const _url_liste_des_salles         = 'listereservation-listereservation';
 
 $(function() {
 
