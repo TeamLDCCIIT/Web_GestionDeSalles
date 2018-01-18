@@ -10,8 +10,8 @@ define('_sql_db', 'salles');
 
 //Paramètres globaux
 define("_debug", false);
-define("_accueil_module", 'exemple');
-define("_accueil_page", 'accueil');
+define("_accueil_module", 'listing');
+define("_accueil_page", 'listeDesSalles');
 define("_app_name", '<b>Gestion</b> de salles');
 define("_app_smallname", '<b>G</b>DS');
 define("_root", '');

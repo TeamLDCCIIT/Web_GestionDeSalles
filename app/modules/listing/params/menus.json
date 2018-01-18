@@ -1,7 +1,7 @@
 [
     {
         "name"      :  "Liste des salles",
-        "icon"      :  "fa-dashboard",
+        "icon"      :  "fa-search",
         "link"      :  "listing-listeDesSalles"
     }
 ]
