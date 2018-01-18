@@ -1,5 +1,6 @@
 [
 	"moment.min.js",
+	"fr.js",
 	"underscore.min.js",
 	"clndr.js",
 	"script.js"

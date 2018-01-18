@@ -11,6 +11,7 @@ class TypeSalle extends BasicEnum {
     const AMPHI             = 3;
     const LAB_INFORMATIQUE  = 4;
     const LAB_ELECTRONIQUE  = 5;
+    const DIVERS            = 6;
 
     /**
      * Récupère le nom du type en question
@@ -21,6 +22,8 @@ class TypeSalle extends BasicEnum {
         switch ($type) {
             case TypeSalle::INCONNU:
                 return "Inconnu";
+            case TypeSalle::DIVERS:
+                return "Divers";
             case TypeSalle::SALLE_CLASSE:
                 return "Salle de classe";
             case TypeSalle::SALLE_REUNION:
@@ -45,6 +48,8 @@ class TypeSalle extends BasicEnum {
         switch ($type) {
             case TypeSalle::INCONNU:
                 return "";
+            case TypeSalle::DIVERS:
+                return "question";
             case TypeSalle::SALLE_CLASSE:
                 return "book";
             case TypeSalle::SALLE_REUNION:
@@ -77,30 +82,11 @@ class TypeSalle extends BasicEnum {
                 return TypeSalle::LAB_INFORMATIQUE;
             case "lab. electronique":
                 return TypeSalle::LAB_ELECTRONIQUE;
+            case "divers":
+                return TypeSalle::DIVERS;
             default:
                 return TypeSalle::INCONNU;
         }
     }
-/*
-    public static function getNameWithColor($droit)
-    {
-        function colorize($color, $text) {
-            return '<span class="text-bold text-'.$color.'">' . $text . '</span>';
-        }
-
-        switch ($droit) {
-            case Droit::INCONNU:
-                return colorize("gray", self::getName($droit));
-            case Droit::UTILISATEUR:
-                return colorize("white", self::getName($droit));
-            case Droit::REALISATEUR:
-                return colorize("green", self::getName($droit));
-            case Droit::ADMINISTRATEUR:
-                return colorize("red", self::getName($droit));
-            default:
-                return "Inconnu";
-        }
-    }
-*/
 
 }

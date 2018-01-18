@@ -21,7 +21,7 @@ function getSallesDispoAt($db, $debut, $fin, $campus){
     $nodisp = "SELECT DISTINCT s.id_salle FROM salles as s 
                 JOIN reservation as r ON r.id_salle = s.id_salle
                 WHERE (
-                  (r.debut < '$debut' AND r.fin > '$fin' ) OR
+                  (r.debut <= '$debut' AND r.fin >= '$fin' ) OR
                   (r.debut > '$debut' AND r.debut < '$fin' ) OR
                   (r.fin > '$debut' AND r.fin < '$fin' )
                 )";

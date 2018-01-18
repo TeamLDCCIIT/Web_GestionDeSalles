@@ -191,9 +191,9 @@ VALUES('Wiener', 'B310', 1, 'Salle de classe', 3);
 
 /*insertion des salles PARIS*/
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('Salle de formations', '0', 2, '', 0) ;
+VALUES('Salle de formations', '0', 2, 'Divers', 0) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('Foyer', '1', 2, '', 0) ;
+VALUES('Foyer', '1', 2, 'Divers', 0) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('S1', '2', 2, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
@@ -224,15 +224,15 @@ VALUES('P2', '2', 3, 'Salle de classe', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
 VALUES('Salle de reunion', '3', 3, 'Salle de reunion', 1) ;
 INSERT INTO salles(nom, code, id_campus, type_salle, etage)
-VALUES('Bureau', '4', 3, 'Bureau', 1) ;
+VALUES('Bureau', '4', 3, 'Divers', 1) ;
 
 
 /*insertion des reservations*/
 INSERT INTO reservation(id_salle,id_utilisateur, debut, fin)
-VALUES(1,1, '2017-01-02 14:59:54', '2017-01-03 12:34:10');
+VALUES(1,1, '2017-01-02 14:45:00', '2017-01-02 18:45:00');
 INSERT INTO reservation(id_salle,id_utilisateur, debut, fin)
-VALUES(2,2, '2018-01-12 14:59:54', '2018-01-13 12:34:10');
+VALUES(2,2, '2018-01-12 15:00:00', '2018-01-12 15:30:00');
 INSERT INTO reservation(id_salle,id_utilisateur, debut, fin)
-VALUES(2,3, '2018-04-20 12:34:10', '2018-04-20 14:59:54');
+VALUES(2,3, '2018-04-20 12:30:00', '2018-04-20 14:15:00');
 INSERT INTO reservation(id_salle,id_utilisateur, debut, fin)
-VALUES(10,4, '2018-02-02 12:34:10', '2018-02-02 14:59:54');
+VALUES(10,4, '2018-02-02 13:30:00', '2018-02-02 15:00:00');

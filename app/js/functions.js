@@ -5,6 +5,7 @@
 
 function onButtonAction(data_action, callback) {
     $('button[data-action="' + data_action + '"]').click(callback);
+    $('a[data-action="' + data_action + '"]').click(callback);
 }
 
 function onSelectChange(data_action, callback) {
