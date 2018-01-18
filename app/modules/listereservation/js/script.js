@@ -3,6 +3,10 @@
  */
 
 $(function() {
+	
+	// this will use clndr's default template, which you probably don't want.
+$('#full-clndr').clndr();
+
  
 });
 
