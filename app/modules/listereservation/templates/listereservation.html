@@ -1,251 +1,66 @@
-<div class="col-sm-6">
-	<div class="box" style="max-height: 100%; max-width: 100%">
-		<div class="box-header" style="color: #444;display: block;padding: 10px;position: relative;">
-		
-			<div class="box" style="max-height: 100%; max-width: 100%" id="alpha">
-			
-				<div class="box-header with-border" style="color: #444;display: block;padding: 10px;position: relative;">
-					<h3 class="box-title">A venir</h3>
+<div class="col-sm-8">
+    <div class="box box-warning">
 
-					<div class="box-tools pull-right">
-						<button type="button" class="btn btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-					</div>
-				</div>
-				
-				<div class="box-body" style="color: #444;display: block;padding: 10px;position: relative;">
-					<div class="col-sm-12 no-padding">
-						<label style="margin-top: 25px" class="col-sm-12 control-label"><i style="margin-right: 5px" class="fa fa-calendar-o"></i><U> 26 décembre 2017</U></label>
-					</div>
-					
-					<div class="col-sm-12">
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">Salle 1</label>
-						</div>
-						
-						<div class="col-sm-6">
-							<label style="margin-top: 5px" class="control-label">de 9h00 à 10h00</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">voir</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">supprimer</label>
-						</div>
-					</div>
-					
-					<div class="col-sm-12">
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">Salle 1</label>
-						</div>
-						
-						<div class="col-sm-6">
-							<label style="margin-top: 5px" class="control-label">de 14h00 à 16h00</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">voir</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">supprimer</label>
-						</div>
-					</div>
-					
-					<div class="col-sm-12">
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">Salle 3</label>
-						</div>
-						
-						<div class="col-sm-6">
-							<label style="margin-top: 5px" class="control-label">de 11h00 à 11h30</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">voir</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">supprimer</label>
-						</div>
-					</div>
-					
-					<div class="col-sm-12 no-padding">
-						<label style="margin-top: 25px" class="col-sm-12 control-label"><i style="margin-right: 5px" class="fa fa-calendar-o"></i><U> 28 décembre 2017</U></label>
-					</div>
-					
-					<div class="col-sm-12">
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">Salle 2</label>
-						</div>
-						
-						<div class="col-sm-6">
-							<label style="margin-top: 5px" class="control-label">de 11h00 à 12h00</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">voir</label>
-						</div>
-						
-						<div class="col-sm-2">
-							<label style="margin-top: 5px" class="control-label">supprimer</label>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="box" style=" margin-top: 25px; max-height: 100%; max-width: 100%">
-				<div class="box-header with-border" style="color: #444;display: block;padding: 10px;position: relative;">
-					<h3 class="box-title">Passée</h3>
+        <!-- Réservations à venir-->
+        <div class="box-header with-border">
+            <h3 class="box-title">Réservations à venir</h3>
+            <!--
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-sm" data-action="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+            -->
+        </div>
 
-					<div class="box-tools pull-right">
-						<button type="button" class="btn btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-					</div>
-				</div>
-				
-				<div class="box-body" style="color: #444;display: block;padding: 10px;position: relative;">
-					<div class="col-sm-12 no-padding">
-						<label style="margin-top: 25px" class="col-sm-12 control-label"><i style="margin-right: 5px" class="fa fa-calendar-o"></i><U> 26 décembre 2017</U></label>
-					</div>	
-				</div>
-			</div>
-			
-		</div>
-	</div>
+        <div class="box-body" style="height: calc(100vh - 180px); overflow-y: auto">
+            {% if reservations|length > 0 %}
+                {% for date, resas in reservations %}
+                    <div class="col-sm-12 text-bold text-primary" style="margin-bottom: 10px;text-decoration: underline">
+                        <i class="fa fa-calendar-o fa-fw" aria-hidden="true"></i>&nbsp;{{ date|date('d F Y') }}
+                    </div>
+
+                    {% for resa in resas %}
+                        <div class="col-sm-12 small-pad">
+                            <div class="col-sm-4 text-bold">
+                                {{ resa.salle.nom }} ({{ resa.salle.code }})
+                            </div>
+
+                            <div class="col-sm-4">
+                                de {{ resa.dateDebut|date('H\\hi') }} &nbsp;à&nbsp; {{ resa.dateFin|date('H\\hi') }}
+                            </div>
+
+                            <div class="col-sm-3">
+                                {% if resa.salle.etage == 0 %}
+                                    Rez-de-chaussé
+                                {% elseif resa.salle.etage == 1 %}
+                                    1er étage
+                                {% else %}
+                                    {{ resa.salle.etage }}ème étage
+                                {% endif %}
+
+                            </div>
+
+                            <div class="col-sm-1">
+                                <a role="button" data-action="supprimer-reservation" data-id="{{ resa.id }}" title="Supprimer la réservation">
+                                    <i class="fa fa-trash-o text-red fa-fw" aria-hidden="true"></i>&nbsp;
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <div class="col-sm-12 text-center">
+                    Aucune réservation pour le moment ¯\_(ツ)_/¯
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
-<div class="col-sm-6">
-	<div class="box box-solid">
-            <div class="box-header ui-sortable-handle" style="cursor: move;">
-              <i class="fa fa-calendar"></i>
+<!-- Calendrier -->
+<div class="col-sm-4">
+    <div class="box">
+        <div id="full-clndr">
 
-              <h3 class="box-title">Calendrier</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <button type="button" class="btn btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="full-clndr" class="clearfix"><div class="clndr">
-            <div class="clndr-controls">
-              <div class="clndr-previous-button">&lt;</div>
-              <div class="clndr-next-button">&gt;</div>
-              <div class="current-month">January 2018</div>
-
-            </div>
-            <div class="clndr-grid">
-              <div class="days-of-the-week clearfix">
-                
-                  <div class="header-day">S</div>
-                
-                  <div class="header-day">M</div>
-                
-                  <div class="header-day">T</div>
-                
-                  <div class="header-day">W</div>
-                
-                  <div class="header-day">T</div>
-                
-                  <div class="header-day">F</div>
-                
-                  <div class="header-day">S</div>
-                
-              </div>
-              <div class="days">
-                
-                  <div class="day past adjacent-month last-month calendar-day-2017-12-31 calendar-dow-0" id=""><span class="day-number">31</span></div>
-                
-                  <div class="day past calendar-day-2018-01-01 calendar-dow-1" id=""><span class="day-number">1</span></div>
-                
-                  <div class="day past calendar-day-2018-01-02 calendar-dow-2" id=""><span class="day-number">2</span></div>
-                
-                  <div class="day past calendar-day-2018-01-03 calendar-dow-3" id=""><span class="day-number">3</span></div>
-                
-                  <div class="day past calendar-day-2018-01-04 calendar-dow-4" id=""><span class="day-number">4</span></div>
-                
-                  <div class="day past calendar-day-2018-01-05 calendar-dow-5" id=""><span class="day-number">5</span></div>
-                
-                  <div class="day past calendar-day-2018-01-06 calendar-dow-6" id=""><span class="day-number">6</span></div>
-                
-                  <div class="day past calendar-day-2018-01-07 calendar-dow-0" id=""><span class="day-number">7</span></div>
-                
-                  <div class="day past calendar-day-2018-01-08 calendar-dow-1" id=""><span class="day-number">8</span></div>
-                
-                  <div class="day past calendar-day-2018-01-09 calendar-dow-2" id=""><span class="day-number">9</span></div>
-                
-                  <div class="day past calendar-day-2018-01-10 calendar-dow-3" id=""><span class="day-number">10</span></div>
-                
-                  <div class="day past calendar-day-2018-01-11 calendar-dow-4" id=""><span class="day-number">11</span></div>
-                
-                  <div class="day past calendar-day-2018-01-12 calendar-dow-5" id=""><span class="day-number">12</span></div>
-                
-                  <div class="day past calendar-day-2018-01-13 calendar-dow-6" id=""><span class="day-number">13</span></div>
-                
-                  <div class="day past calendar-day-2018-01-14 calendar-dow-0" id=""><span class="day-number">14</span></div>
-                
-                  <div class="day past calendar-day-2018-01-15 calendar-dow-1" id=""><span class="day-number">15</span></div>
-                
-                  <div class="day past calendar-day-2018-01-16 calendar-dow-2" id=""><span class="day-number">16</span></div>
-                
-                  <div class="day today calendar-day-2018-01-17 calendar-dow-3" id=""><span class="day-number">17</span></div>
-                
-                  <div class="day calendar-day-2018-01-18 calendar-dow-4" id=""><span class="day-number">18</span></div>
-                
-                  <div class="day calendar-day-2018-01-19 calendar-dow-5" id=""><span class="day-number">19</span></div>
-                
-                  <div class="day calendar-day-2018-01-20 calendar-dow-6" id=""><span class="day-number">20</span></div>
-                
-                  <div class="day calendar-day-2018-01-21 calendar-dow-0" id=""><span class="day-number">21</span></div>
-                
-                  <div class="day calendar-day-2018-01-22 calendar-dow-1" id=""><span class="day-number">22</span></div>
-                
-                  <div class="day calendar-day-2018-01-23 calendar-dow-2" id=""><span class="day-number">23</span></div>
-                
-                  <div class="day calendar-day-2018-01-24 calendar-dow-3" id=""><span class="day-number">24</span></div>
-                
-                  <div class="day calendar-day-2018-01-25 calendar-dow-4" id=""><span class="day-number">25</span></div>
-                
-                  <div class="day calendar-day-2018-01-26 calendar-dow-5" id=""><span class="day-number">26</span></div>
-                
-                  <div class="day calendar-day-2018-01-27 calendar-dow-6" id=""><span class="day-number">27</span></div>
-                
-                  <div class="day calendar-day-2018-01-28 calendar-dow-0" id=""><span class="day-number">28</span></div>
-                
-                  <div class="day calendar-day-2018-01-29 calendar-dow-1" id=""><span class="day-number">29</span></div>
-                
-                  <div class="day calendar-day-2018-01-30 calendar-dow-2" id=""><span class="day-number">30</span></div>
-                
-                  <div class="day calendar-day-2018-01-31 calendar-dow-3" id=""><span class="day-number">31</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-01 calendar-dow-4" id=""><span class="day-number">1</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-02 calendar-dow-5" id=""><span class="day-number">2</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-03 calendar-dow-6" id=""><span class="day-number">3</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-04 calendar-dow-0" id=""><span class="day-number">4</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-05 calendar-dow-1" id=""><span class="day-number">5</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-06 calendar-dow-2" id=""><span class="day-number">6</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-07 calendar-dow-3" id=""><span class="day-number">7</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-08 calendar-dow-4" id=""><span class="day-number">8</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-09 calendar-dow-5" id=""><span class="day-number">9</span></div>
-                
-                  <div class="day adjacent-month next-month calendar-day-2018-02-10 calendar-dow-6" id=""><span class="day-number">10</span></div>
-              </div>
-            </div>
-          </div></div>
-            </div>
-            <!-- /.box-body -->
-          </div>
+        </div>
+    </div>
 </div>
