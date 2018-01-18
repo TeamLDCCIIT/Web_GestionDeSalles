@@ -1,2 +1,6 @@
 [
+	"moment.min.js",
+	"underscore.min.js",
+	"clndr.js",
+	"script.js"
 ]

@@ -2,5 +2,6 @@
     "style.css",
     "toastr.min.css",
     "timepicker.css",
-    "bootstrap-datepicker.min.css"
+    "bootstrap-datepicker.min.css",
+	"clndr.css"
 ]
